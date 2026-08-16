@@ -1,0 +1,16 @@
+# Environments and Secrets
+.env
+__pycache__/
+*.pyc
+
+# IDEs
+.idea/
+.vscode/
+
+# Databases (for LangGraph checkpointers later)
+*.sqlite
+*.sqlite3
+*.db
+
+# OS generated files
+.DS_Store
