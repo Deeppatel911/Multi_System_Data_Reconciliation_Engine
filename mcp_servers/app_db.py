@@ -1,7 +1,11 @@
+import json
+
 from fastmcp import FastMCP
 from typing import List, Dict, Any
 
 mcp = FastMCP("Internal_App_DB")
+
+CANONICAL_PROFILES: List[Dict[str, Any]] = []
 
 MOCK_DB_DATA = [
     {
@@ -28,6 +32,15 @@ def search_app_db(query: str) -> List[Dict[str, Any]]:
         record for record in MOCK_DB_DATA
         if query in record["company"].lower() or query in record["email"].lower()
     ]
+
+@mcp.tool
+def save_canonical_profile(profile: Dict[str, Any]) -> str:
+    """Persist a resolved UnifiedCustomerProfile (see core/schemas.py) to the canonical profile store."""
+    CANONICAL_PROFILES.append(profile)
+    return json.dumps({
+        "success": True,
+        "canonical_id": profile.get("canonical_id")
+    })
 
 if __name__ == "__main__":
     mcp.run()

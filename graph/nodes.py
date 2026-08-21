@@ -47,3 +47,35 @@ async def fetch_all_data_node(state: ReconciliationState) -> dict:
         "billing_data": billing_res,
         "app_db_data": app_db_res
     }
+
+
+async def persist_node(state: ReconciliationState) -> dict:
+    """LangGraph Node: Persists the resolved canonical profile to the internal app DB."""
+    canonical_profile = state["canonical_profile"]
+
+    # canonical_profile may be a Pydantic model (UnifiedCustomerProfile) or already a plain dict
+    if hasattr(canonical_profile, "model_dump"):
+        profile_dict = canonical_profile.model_dump()
+    else:
+        profile_dict = canonical_profile
+
+    server_params = StdioServerParameters(
+        command="python",
+        args=["mcp_servers/app_db.py"]
+    )
+
+    try:
+        async with stdio_client(server_params) as (read, write):
+            async with ClientSession(read, write) as session:
+                await session.initialize()
+                result = await session.call_tool(
+                    "save_canonical_profile",
+                    arguments={"profile": profile_dict}
+                )
+                response = json.loads(result.content[0].text)
+                print(f"Canonical profile saved successfully: {response}")
+    except Exception as e:
+        print(f"Error persisting canonical profile: {e}")
+
+    # No state updates are needed after saving
+    return {}

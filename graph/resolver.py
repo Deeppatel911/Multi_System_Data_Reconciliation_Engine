@@ -19,35 +19,16 @@ if "SSL_CERT_FILE" in os.environ and not os.path.exists(os.environ["SSL_CERT_FIL
     del os.environ["SSL_CERT_FILE"]
 
 import json
-import os
 import uuid
 
-from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_groq import ChatGroq
 
 from core.schemas import UnifiedCustomerProfile
 from graph.state import ReconciliationState
 
 from graph.prompts import RESOLUTION_SYSTEM_PROMPT, RESOLUTION_HUMAN_PROMPT
+from core.llm import structured_resolver_llm
 
-load_dotenv()
-
-# ---------------------------------------------------------------------------
-# LLM Client
-# ---------------------------------------------------------------------------
-# `openai/gpt-oss-120b` is served via Groq's OpenAI-compatible open-weights
-# lineup. temperature=0 keeps the reconciliation deterministic — this is a
-# data-integrity task, not a creative one.
-resolver_llm = ChatGroq(
-    model="openai/gpt-oss-120b",
-    temperature=0,
-    api_key=os.environ.get("GROQ_API_KEY"),
-)
-
-# Force the model to emit a payload that validates directly against the
-# UnifiedCustomerProfile schema (field names, types, and nesting included).
-structured_resolver_llm = resolver_llm.with_structured_output(UnifiedCustomerProfile)
 
 resolution_prompt = ChatPromptTemplate.from_messages(
     [
