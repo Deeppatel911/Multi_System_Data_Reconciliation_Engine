@@ -13,4 +13,5 @@ __pycache__/
 *.db
 
 # OS generated files
-.DS_Store
+.DS_Storestate.db
+state.db-journal

@@ -29,4 +29,4 @@ graph_builder.add_conditional_edges(
 
 graph_builder.add_edge("persist", END)
 
-app = graph_builder.compile()
+# app = graph_builder.compile()

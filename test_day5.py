@@ -1,9 +1,11 @@
 import asyncio
+from graph.builder import graph_builder
 from graph.builder import app
-
 
 async def main():
     print("Starting Automated LangGraph Execution...")
+
+    app = graph_builder.compile()
 
     # 1. The starting clipboard
     initial_state = {
