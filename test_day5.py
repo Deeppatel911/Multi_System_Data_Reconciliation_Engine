@@ -27,6 +27,12 @@ async def main():
     print(f"Confidence Score: {final_state['canonical_profile'].confidence_metrics.score}")
     print(f"Human Approval Required: {final_state.get('human_approval_required')}")
 
+    if final_state.get('discrepancies'):
+        print("\nDiscrepancy Details:")
+        for disc in final_state['discrepancies']:
+            print(f"  - Field [{disc.field_name}]: {disc.conflict_description}")
+            print(f"    Values: {disc.conflicting_values}")
+
     if final_state.get('human_approval_required'):
         print("Graph routed to '__end__' due to discrepancies. (Persistence bypassed)")
     else:
