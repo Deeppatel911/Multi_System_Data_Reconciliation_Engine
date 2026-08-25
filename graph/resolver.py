@@ -22,6 +22,7 @@ import json
 import uuid
 
 from langchain_core.prompts import ChatPromptTemplate
+from langfuse.langchain import CallbackHandler
 
 from core.schemas import UnifiedCustomerProfile
 from graph.state import ReconciliationState
@@ -52,13 +53,16 @@ def resolution_node(state: ReconciliationState) -> dict:
     query = state["query"]
     print(f"\nResolving canonical profile for query: '{query}'...")
 
+    langfuse_handler = CallbackHandler()
+
     canonical_profile: UnifiedCustomerProfile = resolution_chain.invoke(
         {
             "query": query,
             "crm_data": json.dumps(state.get("crm_data", []), indent=2, default=str),
             "billing_data": json.dumps(state.get("billing_data", []), indent=2, default=str),
             "app_db_data": json.dumps(state.get("app_db_data", []), indent=2, default=str),
-        }
+        },
+        config={"callbacks": [langfuse_handler]},
     )
 
     # Guarantee canonical_id is always a genuinely new identifier even if the

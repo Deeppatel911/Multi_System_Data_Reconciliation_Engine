@@ -45,10 +45,12 @@ jsonschema==4.26.0
 jsonschema-path==0.5.0
 jsonschema-specifications==2025.9.1
 keyring==25.7.0
+langchain==0.3.30
 langchain-core==1.5.5
 langchain-groq==0.3.8
 langchain-protocol==0.0.18
-langfuse==4.14.4
+langchain-text-splitters==0.3.11
+langfuse==3.7.0
 langgraph==1.2.11
 langgraph-checkpoint==4.2.0
 langgraph-checkpoint-sqlite==3.1.1

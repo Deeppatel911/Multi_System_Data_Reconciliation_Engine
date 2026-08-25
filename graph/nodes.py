@@ -79,3 +79,9 @@ async def persist_node(state: ReconciliationState) -> dict:
 
     # No state updates are needed after saving
     return {}
+
+
+async def approval_node(state: ReconciliationState) -> dict:
+    """LangGraph Node: Resumes execution after a human has approved the profile."""
+    print("Human approval received! Resuming execution...")
+    return {}
