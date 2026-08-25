@@ -49,7 +49,7 @@ langchain==0.3.30
 langchain-core==1.5.5
 langchain-groq==0.3.8
 langchain-protocol==0.0.18
-langchain-text-splitters==0.3.11
+langchain-text-splitters==1.1.2
 langfuse==3.7.0
 langgraph==1.2.11
 langgraph-checkpoint==4.2.0
