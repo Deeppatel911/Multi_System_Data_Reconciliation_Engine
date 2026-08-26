@@ -77,7 +77,7 @@ def resolution_node(state: ReconciliationState) -> dict:
 
     # Route low-confidence merges to the human-in-the-loop review step.
     human_approval_required = (
-        canonical_profile.confidence_metrics.score < 0.75
+        canonical_profile.confidence_metrics.score < 0.85
         or len(canonical_profile.discrepancies) > 0
     )
 
