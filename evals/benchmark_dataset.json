@@ -1,0 +1,852 @@
+[
+    {
+        "test_id": "TC_001_CLEAN",
+        "category": "clean_match",
+        "query": "company_1",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_1",
+                    "name": "Company 1 Inc",
+                    "domain": "company1.com",
+                    "tier": "Enterprise"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_1",
+                    "name": "Company 1 Inc",
+                    "email": "billing@company1.com"
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_1",
+                    "name": "Company 1 Inc",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": true,
+            "expected_discrepancy_count": 0,
+            "requires_human_approval": false
+        }
+    },
+    {
+        "test_id": "TC_002_CLEAN",
+        "category": "clean_match",
+        "query": "company_2",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_2",
+                    "name": "Company 2 Inc",
+                    "domain": "company2.com",
+                    "tier": "Enterprise"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_2",
+                    "name": "Company 2 Inc",
+                    "email": "billing@company2.com"
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_2",
+                    "name": "Company 2 Inc",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": true,
+            "expected_discrepancy_count": 0,
+            "requires_human_approval": false
+        }
+    },
+    {
+        "test_id": "TC_003_CLEAN",
+        "category": "clean_match",
+        "query": "company_3",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_3",
+                    "name": "Company 3 Inc",
+                    "domain": "company3.com",
+                    "tier": "Enterprise"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_3",
+                    "name": "Company 3 Inc",
+                    "email": "billing@company3.com"
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_3",
+                    "name": "Company 3 Inc",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": true,
+            "expected_discrepancy_count": 0,
+            "requires_human_approval": false
+        }
+    },
+    {
+        "test_id": "TC_004_CLEAN",
+        "category": "clean_match",
+        "query": "company_4",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_4",
+                    "name": "Company 4 Inc",
+                    "domain": "company4.com",
+                    "tier": "Enterprise"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_4",
+                    "name": "Company 4 Inc",
+                    "email": "billing@company4.com"
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_4",
+                    "name": "Company 4 Inc",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": true,
+            "expected_discrepancy_count": 0,
+            "requires_human_approval": false
+        }
+    },
+    {
+        "test_id": "TC_005_CLEAN",
+        "category": "clean_match",
+        "query": "company_5",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_5",
+                    "name": "Company 5 Inc",
+                    "domain": "company5.com",
+                    "tier": "Enterprise"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_5",
+                    "name": "Company 5 Inc",
+                    "email": "billing@company5.com"
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_5",
+                    "name": "Company 5 Inc",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": true,
+            "expected_discrepancy_count": 0,
+            "requires_human_approval": false
+        }
+    },
+    {
+        "test_id": "TC_006_CLEAN",
+        "category": "clean_match",
+        "query": "company_6",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_6",
+                    "name": "Company 6 Inc",
+                    "domain": "company6.com",
+                    "tier": "Enterprise"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_6",
+                    "name": "Company 6 Inc",
+                    "email": "billing@company6.com"
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_6",
+                    "name": "Company 6 Inc",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": true,
+            "expected_discrepancy_count": 0,
+            "requires_human_approval": false
+        }
+    },
+    {
+        "test_id": "TC_007_CLEAN",
+        "category": "clean_match",
+        "query": "company_7",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_7",
+                    "name": "Company 7 Inc",
+                    "domain": "company7.com",
+                    "tier": "Enterprise"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_7",
+                    "name": "Company 7 Inc",
+                    "email": "billing@company7.com"
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_7",
+                    "name": "Company 7 Inc",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": true,
+            "expected_discrepancy_count": 0,
+            "requires_human_approval": false
+        }
+    },
+    {
+        "test_id": "TC_008_CLEAN",
+        "category": "clean_match",
+        "query": "company_8",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_8",
+                    "name": "Company 8 Inc",
+                    "domain": "company8.com",
+                    "tier": "Enterprise"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_8",
+                    "name": "Company 8 Inc",
+                    "email": "billing@company8.com"
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_8",
+                    "name": "Company 8 Inc",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": true,
+            "expected_discrepancy_count": 0,
+            "requires_human_approval": false
+        }
+    },
+    {
+        "test_id": "TC_009_EDGE",
+        "category": "edge_case_discrepancy",
+        "query": "startup_9",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_9",
+                    "name": "Startup 9",
+                    "domain": "startup9.io",
+                    "tier": "Pro"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_9",
+                    "name": "Startup 9 LLC",
+                    "email": null
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_9",
+                    "name": "Startup 9",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": true,
+            "expected_discrepancy_count": 2,
+            "requires_human_approval": true
+        }
+    },
+    {
+        "test_id": "TC_010_EDGE",
+        "category": "edge_case_discrepancy",
+        "query": "startup_10",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_10",
+                    "name": "Startup 10",
+                    "domain": "startup10.io",
+                    "tier": "Pro"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_10",
+                    "name": "Startup 10 LLC",
+                    "email": null
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_10",
+                    "name": "Startup 10",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": true,
+            "expected_discrepancy_count": 2,
+            "requires_human_approval": true
+        }
+    },
+    {
+        "test_id": "TC_011_EDGE",
+        "category": "edge_case_discrepancy",
+        "query": "startup_11",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_11",
+                    "name": "Startup 11",
+                    "domain": "startup11.io",
+                    "tier": "Pro"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_11",
+                    "name": "Startup 11 LLC",
+                    "email": null
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_11",
+                    "name": "Startup 11",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": true,
+            "expected_discrepancy_count": 2,
+            "requires_human_approval": true
+        }
+    },
+    {
+        "test_id": "TC_012_EDGE",
+        "category": "edge_case_discrepancy",
+        "query": "startup_12",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_12",
+                    "name": "Startup 12",
+                    "domain": "startup12.io",
+                    "tier": "Pro"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_12",
+                    "name": "Startup 12 LLC",
+                    "email": null
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_12",
+                    "name": "Startup 12",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": true,
+            "expected_discrepancy_count": 2,
+            "requires_human_approval": true
+        }
+    },
+    {
+        "test_id": "TC_013_EDGE",
+        "category": "edge_case_discrepancy",
+        "query": "startup_13",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_13",
+                    "name": "Startup 13",
+                    "domain": "startup13.io",
+                    "tier": "Pro"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_13",
+                    "name": "Startup 13 LLC",
+                    "email": null
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_13",
+                    "name": "Startup 13",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": true,
+            "expected_discrepancy_count": 2,
+            "requires_human_approval": true
+        }
+    },
+    {
+        "test_id": "TC_014_EDGE",
+        "category": "edge_case_discrepancy",
+        "query": "startup_14",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_14",
+                    "name": "Startup 14",
+                    "domain": "startup14.io",
+                    "tier": "Pro"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_14",
+                    "name": "Startup 14 LLC",
+                    "email": null
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_14",
+                    "name": "Startup 14",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": true,
+            "expected_discrepancy_count": 2,
+            "requires_human_approval": true
+        }
+    },
+    {
+        "test_id": "TC_015_EDGE",
+        "category": "edge_case_discrepancy",
+        "query": "startup_15",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_15",
+                    "name": "Startup 15",
+                    "domain": "startup15.io",
+                    "tier": "Pro"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_15",
+                    "name": "Startup 15 LLC",
+                    "email": null
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_15",
+                    "name": "Startup 15",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": true,
+            "expected_discrepancy_count": 2,
+            "requires_human_approval": true
+        }
+    },
+    {
+        "test_id": "TC_016_EDGE",
+        "category": "edge_case_discrepancy",
+        "query": "startup_16",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_16",
+                    "name": "Startup 16",
+                    "domain": "startup16.io",
+                    "tier": "Pro"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_16",
+                    "name": "Startup 16 LLC",
+                    "email": null
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_16",
+                    "name": "Startup 16",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": true,
+            "expected_discrepancy_count": 2,
+            "requires_human_approval": true
+        }
+    },
+    {
+        "test_id": "TC_017_EDGE",
+        "category": "edge_case_discrepancy",
+        "query": "startup_17",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_17",
+                    "name": "Startup 17",
+                    "domain": "startup17.io",
+                    "tier": "Pro"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_17",
+                    "name": "Startup 17 LLC",
+                    "email": null
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_17",
+                    "name": "Startup 17",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": true,
+            "expected_discrepancy_count": 2,
+            "requires_human_approval": true
+        }
+    },
+    {
+        "test_id": "TC_018_TRAP",
+        "category": "distinct_entities",
+        "query": "global_tech_18",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_18a",
+                    "name": "Global Tech 18",
+                    "domain": "globaltech18.com",
+                    "tier": "Enterprise"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_18b",
+                    "name": "Global Tech 18 Ltd",
+                    "email": "finance@globaltech18.co.uk"
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_18a",
+                    "name": "Global Tech 18",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": false,
+            "expected_discrepancy_count": 3,
+            "requires_human_approval": true
+        }
+    },
+    {
+        "test_id": "TC_019_TRAP",
+        "category": "distinct_entities",
+        "query": "global_tech_19",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_19a",
+                    "name": "Global Tech 19",
+                    "domain": "globaltech19.com",
+                    "tier": "Enterprise"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_19b",
+                    "name": "Global Tech 19 Ltd",
+                    "email": "finance@globaltech19.co.uk"
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_19a",
+                    "name": "Global Tech 19",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": false,
+            "expected_discrepancy_count": 3,
+            "requires_human_approval": true
+        }
+    },
+    {
+        "test_id": "TC_020_TRAP",
+        "category": "distinct_entities",
+        "query": "global_tech_20",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_20a",
+                    "name": "Global Tech 20",
+                    "domain": "globaltech20.com",
+                    "tier": "Enterprise"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_20b",
+                    "name": "Global Tech 20 Ltd",
+                    "email": "finance@globaltech20.co.uk"
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_20a",
+                    "name": "Global Tech 20",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": false,
+            "expected_discrepancy_count": 3,
+            "requires_human_approval": true
+        }
+    },
+    {
+        "test_id": "TC_021_TRAP",
+        "category": "distinct_entities",
+        "query": "global_tech_21",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_21a",
+                    "name": "Global Tech 21",
+                    "domain": "globaltech21.com",
+                    "tier": "Enterprise"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_21b",
+                    "name": "Global Tech 21 Ltd",
+                    "email": "finance@globaltech21.co.uk"
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_21a",
+                    "name": "Global Tech 21",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": false,
+            "expected_discrepancy_count": 3,
+            "requires_human_approval": true
+        }
+    },
+    {
+        "test_id": "TC_022_TRAP",
+        "category": "distinct_entities",
+        "query": "global_tech_22",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_22a",
+                    "name": "Global Tech 22",
+                    "domain": "globaltech22.com",
+                    "tier": "Enterprise"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_22b",
+                    "name": "Global Tech 22 Ltd",
+                    "email": "finance@globaltech22.co.uk"
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_22a",
+                    "name": "Global Tech 22",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": false,
+            "expected_discrepancy_count": 3,
+            "requires_human_approval": true
+        }
+    },
+    {
+        "test_id": "TC_023_TRAP",
+        "category": "distinct_entities",
+        "query": "global_tech_23",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_23a",
+                    "name": "Global Tech 23",
+                    "domain": "globaltech23.com",
+                    "tier": "Enterprise"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_23b",
+                    "name": "Global Tech 23 Ltd",
+                    "email": "finance@globaltech23.co.uk"
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_23a",
+                    "name": "Global Tech 23",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": false,
+            "expected_discrepancy_count": 3,
+            "requires_human_approval": true
+        }
+    },
+    {
+        "test_id": "TC_024_TRAP",
+        "category": "distinct_entities",
+        "query": "global_tech_24",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_24a",
+                    "name": "Global Tech 24",
+                    "domain": "globaltech24.com",
+                    "tier": "Enterprise"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_24b",
+                    "name": "Global Tech 24 Ltd",
+                    "email": "finance@globaltech24.co.uk"
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_24a",
+                    "name": "Global Tech 24",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": false,
+            "expected_discrepancy_count": 3,
+            "requires_human_approval": true
+        }
+    },
+    {
+        "test_id": "TC_025_TRAP",
+        "category": "distinct_entities",
+        "query": "global_tech_25",
+        "inputs": {
+            "crm_data": [
+                {
+                    "id": "crm_25a",
+                    "name": "Global Tech 25",
+                    "domain": "globaltech25.com",
+                    "tier": "Enterprise"
+                }
+            ],
+            "billing_data": [
+                {
+                    "id": "bil_25b",
+                    "name": "Global Tech 25 Ltd",
+                    "email": "finance@globaltech25.co.uk"
+                }
+            ],
+            "app_db_data": [
+                {
+                    "id": "app_25a",
+                    "name": "Global Tech 25",
+                    "status": "active"
+                }
+            ]
+        },
+        "expected_behavior": {
+            "should_merge": false,
+            "expected_discrepancy_count": 3,
+            "requires_human_approval": true
+        }
+    }
+]
