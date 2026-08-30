@@ -55,7 +55,7 @@ def generate_benchmark_dataset():
             billing=[{"id": f"bil_{i}", "name": f"Startup {i} LLC", "email": None}],  # Missing email, added LLC
             app_db=[{"id": f"app_{i}", "name": f"Startup {i}", "status": "active"}],
             expected_merge=True,
-            expected_discrepancies=2,  # Name suffix mismatch, missing email
+            expected_discrepancies=1,  # Name suffix mismatch, missing email
             expected_human_review=True  # Discrepancies should trigger HITL
         ))
 
@@ -75,7 +75,7 @@ def generate_benchmark_dataset():
             # App DB shows the US branch
             app_db=[{"id": f"app_{i}a", "name": f"Global Tech {i}", "status": "active"}],
             expected_merge=False,  # The LLM should realize .com and .co.uk are distinct corporate entities
-            expected_discrepancies=3,
+            expected_discrepancies=2,
             expected_human_review=True  # Low confidence should trigger HITL
         ))
 

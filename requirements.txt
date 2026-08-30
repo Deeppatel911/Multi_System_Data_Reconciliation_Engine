@@ -115,3 +115,6 @@ zipp==4.1.0
 zstandard==0.25.0
 fastapi==0.141.1
 uvicorn==0.52.3
+langchain-openai==1.6.0
+pytest==9.1.1
+pytest-asyncio==1.4.0

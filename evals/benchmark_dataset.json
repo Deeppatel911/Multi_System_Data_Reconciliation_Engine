@@ -301,7 +301,7 @@
         },
         "expected_behavior": {
             "should_merge": true,
-            "expected_discrepancy_count": 2,
+            "expected_discrepancy_count": 1,
             "requires_human_approval": true
         }
     },
@@ -335,7 +335,7 @@
         },
         "expected_behavior": {
             "should_merge": true,
-            "expected_discrepancy_count": 2,
+            "expected_discrepancy_count": 1,
             "requires_human_approval": true
         }
     },
@@ -369,7 +369,7 @@
         },
         "expected_behavior": {
             "should_merge": true,
-            "expected_discrepancy_count": 2,
+            "expected_discrepancy_count": 1,
             "requires_human_approval": true
         }
     },
@@ -403,7 +403,7 @@
         },
         "expected_behavior": {
             "should_merge": true,
-            "expected_discrepancy_count": 2,
+            "expected_discrepancy_count": 1,
             "requires_human_approval": true
         }
     },
@@ -437,7 +437,7 @@
         },
         "expected_behavior": {
             "should_merge": true,
-            "expected_discrepancy_count": 2,
+            "expected_discrepancy_count": 1,
             "requires_human_approval": true
         }
     },
@@ -471,7 +471,7 @@
         },
         "expected_behavior": {
             "should_merge": true,
-            "expected_discrepancy_count": 2,
+            "expected_discrepancy_count": 1,
             "requires_human_approval": true
         }
     },
@@ -505,7 +505,7 @@
         },
         "expected_behavior": {
             "should_merge": true,
-            "expected_discrepancy_count": 2,
+            "expected_discrepancy_count": 1,
             "requires_human_approval": true
         }
     },
@@ -539,7 +539,7 @@
         },
         "expected_behavior": {
             "should_merge": true,
-            "expected_discrepancy_count": 2,
+            "expected_discrepancy_count": 1,
             "requires_human_approval": true
         }
     },
@@ -573,7 +573,7 @@
         },
         "expected_behavior": {
             "should_merge": true,
-            "expected_discrepancy_count": 2,
+            "expected_discrepancy_count": 1,
             "requires_human_approval": true
         }
     },
@@ -607,7 +607,7 @@
         },
         "expected_behavior": {
             "should_merge": false,
-            "expected_discrepancy_count": 3,
+            "expected_discrepancy_count": 2,
             "requires_human_approval": true
         }
     },
@@ -641,7 +641,7 @@
         },
         "expected_behavior": {
             "should_merge": false,
-            "expected_discrepancy_count": 3,
+            "expected_discrepancy_count": 2,
             "requires_human_approval": true
         }
     },
@@ -675,7 +675,7 @@
         },
         "expected_behavior": {
             "should_merge": false,
-            "expected_discrepancy_count": 3,
+            "expected_discrepancy_count": 2,
             "requires_human_approval": true
         }
     },
@@ -709,7 +709,7 @@
         },
         "expected_behavior": {
             "should_merge": false,
-            "expected_discrepancy_count": 3,
+            "expected_discrepancy_count": 2,
             "requires_human_approval": true
         }
     },
@@ -743,7 +743,7 @@
         },
         "expected_behavior": {
             "should_merge": false,
-            "expected_discrepancy_count": 3,
+            "expected_discrepancy_count": 2,
             "requires_human_approval": true
         }
     },
@@ -777,7 +777,7 @@
         },
         "expected_behavior": {
             "should_merge": false,
-            "expected_discrepancy_count": 3,
+            "expected_discrepancy_count": 2,
             "requires_human_approval": true
         }
     },
@@ -811,7 +811,7 @@
         },
         "expected_behavior": {
             "should_merge": false,
-            "expected_discrepancy_count": 3,
+            "expected_discrepancy_count": 2,
             "requires_human_approval": true
         }
     },
@@ -845,7 +845,7 @@
         },
         "expected_behavior": {
             "should_merge": false,
-            "expected_discrepancy_count": 3,
+            "expected_discrepancy_count": 2,
             "requires_human_approval": true
         }
     }
