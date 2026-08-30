@@ -7,14 +7,17 @@ class ConfidenceScore(BaseModel):
     reasoning: str = Field(..., description="Explanation of why this confidence score was given by the LLM.")
 
 
+class ConflictingValues(BaseModel):
+    salesforce: Optional[str] = None
+    stripe: Optional[str] = None
+    app_db: Optional[str] = None
+
+
 class DiscrepancyReport(BaseModel):
     field_name: str = Field(..., description="The name of the conflicting field (e.g., 'company_name').")
     # source_a_value: str = Field(..., description="The value from the first data source.")
     # source_b_value: str = Field(..., description="The value from the second data source.")
-    conflicting_values: Dict[str, Any] = Field(
-        ...,
-        description="Dictionary mapping each source name to its respective value, e.g. {'salesforce': 'Acme Inc', 'stripe': 'Acme LLC', 'app_db': 'Acme'}"
-    )
+    conflicting_values: ConflictingValues
     conflict_description: str = Field(..., description="Short explanation of why these values conflict.")
 
 

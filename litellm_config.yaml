@@ -1,0 +1,17 @@
+model_list:
+  # Tier 1: GPT-OSS on Groq (In case the specific Qwen model rate-limits first)
+  - model_name: mdm-resolver
+    litellm_params:
+      model: groq/openai/gpt-oss-120b
+      api_key: os.environ/GROQ_API_KEY
+
+  # Tier 3: The Ultimate Safety Net (Kicks in when Groq hits its global 30 RPM limit)
+  - model_name: mdm-resolver
+    litellm_params:
+      model: openai/gpt-4o-mini
+      api_key: os.environ/OPENAI_API_KEY
+
+router_settings:
+  # Automatically try the next model in the list on failure
+  num_retries: 2
+  timeout: 30

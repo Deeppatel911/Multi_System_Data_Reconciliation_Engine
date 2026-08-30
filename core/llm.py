@@ -1,6 +1,5 @@
-import os
 from dotenv import load_dotenv
-from langchain_groq import ChatGroq
+from langchain_openai import ChatOpenAI
 
 from core.schemas import UnifiedCustomerProfile
 
@@ -9,15 +8,16 @@ load_dotenv()
 # ---------------------------------------------------------------------------
 # LLM Client
 # ---------------------------------------------------------------------------
-# `openai/gpt-oss-120b` is served via Groq's OpenAI-compatible open-weights
-# lineup. temperature=0 keeps the reconciliation deterministic — this is a
-# data-integrity task, not a creative one.
-resolver_llm = ChatGroq(
-    model="openai/gpt-oss-120b",
-    temperature=0,
-    api_key=os.environ.get("GROQ_API_KEY"),
+# We are no longer talking to Groq directly.
+# We talk to our local LiteLLM Proxy on port 4000, which handles the routing.
+# LiteLLM accepts any string for the API key when running locally.
+structured_resolver_llm = ChatOpenAI(
+    base_url="http://127.0.0.1:4000",
+    api_key="sk-litellm-local",
+    model="mdm-resolver",             # This matches the model_name in our YAML!
+    temperature=0
 )
 
 # Force the model to emit a payload that validates directly against the
 # UnifiedCustomerProfile schema (field names, types, and nesting included).
-structured_resolver_llm = resolver_llm.with_structured_output(UnifiedCustomerProfile)
+structured_resolver_llm = structured_resolver_llm.with_structured_output(UnifiedCustomerProfile)

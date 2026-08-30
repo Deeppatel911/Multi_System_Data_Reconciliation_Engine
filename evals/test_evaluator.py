@@ -7,6 +7,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langfuse.langchain import CallbackHandler
 from langfuse import get_client
+from langchain_core.runnables import RunnableConfig
 
 # Import our actual open-source worker chain to test it!
 from graph.resolver import resolution_chain
@@ -35,9 +36,10 @@ judge_llm = ChatOpenAI(model="gpt-4o", temperature=0).with_structured_output(Eva
 
 JUDGE_PROMPT = ChatPromptTemplate.from_messages([
     ("system",
-     "You are an expert AI Evaluator grading an entity resolution model. Strictly evaluate the actual output against the raw inputs."
-     "CRITICAL: The worker model is instructed to map the input 'crm_data' to the key 'salesforce', and 'billing_data' to the key 'stripe'. "
-     "Do NOT flag the words 'salesforce', 'stripe', or 'app_db' as hallucinations. Only flag if the actual entity values (emails, names, domains) are fabricated."
+     "You are an expert AI Evaluator grading an entity resolution model. Strictly evaluate the actual output against the raw inputs.\n"
+     "CRITICAL RULES:\n"
+     "1. The worker model maps 'crm_data' to 'salesforce' and 'billing_data' to 'stripe'. Do NOT flag these source names as hallucinations.\n"
+     "2. The worker model is instructed to explicitly extract domains from email addresses (e.g., extracting 'company.co.uk' from 'finance@company.co.uk'). Do NOT flag extracted domains as hallucinations."
      ),
 
     ("human", """
@@ -69,6 +71,13 @@ def test_entity_resolution(test_case):
     # Initialize Langfuse Handler per test case
     langfuse_handler = CallbackHandler()
 
+    # Define configuration with session_id and tags
+    config = RunnableConfig(
+        callbacks=[langfuse_handler],
+        metadata={"langfuse_session_id": "golden-dataset-benchmark-run-1"},
+        tags=["benchmark", "gpt-oss-120b-fallback"],
+    )
+
     # Extract test inputs
     inputs = test_case["inputs"]
     expected = test_case["expected_behavior"]
@@ -81,7 +90,7 @@ def test_entity_resolution(test_case):
         "billing_data": json.dumps(inputs["billing_data"]),
         "app_db_data": json.dumps(inputs["app_db_data"]),
     },
-        config={"callbacks": [langfuse_handler]})
+        config=config)
 
     print("\n--- WHAT THE LLM ACTUALLY OUTPUT ---")
     print(actual_profile.model_dump_json(indent=2))
