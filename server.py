@@ -1,16 +1,23 @@
 import json
-import asyncio
 from fastapi import FastAPI, Request, BackgroundTasks
-from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
 from graph.builder import graph_builder
 
+import os
+from dotenv import load_dotenv
+from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
+
+load_dotenv()
 app = FastAPI()
 
+LANGGRAPH_DB_URL = os.environ.get("LANGGRAPH_DB_URL")
 
 async def resume_graph(decision: str):
     """Background task to wake up LangGraph and resume execution."""
-    # 1. Re-open the specific state database
-    async with AsyncSqliteSaver.from_conn_string("state.db") as memory:
+    # 1. Connect to the Async Postgres checkpointer
+    async with AsyncPostgresSaver.from_conn_string(LANGGRAPH_DB_URL) as memory:
+        # IMPORTANT: Initialize the Postgres checkpoint tables if they don't exist
+        await memory.setup()
+
         # 2. Recompile the graph engine
         engine = graph_builder.compile(checkpointer=memory)
         config = {"configurable": {"thread_id": "1"}}

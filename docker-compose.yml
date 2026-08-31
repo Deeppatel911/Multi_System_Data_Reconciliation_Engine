@@ -1,0 +1,47 @@
+services:
+  # 1. The PostgreSQL Database Service
+  postgres:
+    image: postgres:16-alpine
+    container_name: mdm_postgres
+    environment:
+      POSTGRES_USER: mdm_admin
+      POSTGRES_PASSWORD: mdm_secure_password
+      POSTGRES_DB: mdm_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mdm_admin -d mdm_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # 2. The Python API Server & MCP Host
+  api-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mdm_api_server
+    ports:
+      - "8000:8000"
+    environment:
+      # Pass through all necessary keys from the host's .env file
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - LANGFUSE_PUBLIC_KEY=${LANGFUSE_PUBLIC_KEY}
+      - LANGFUSE_SECRET_KEY=${LANGFUSE_SECRET_KEY}
+      - LANGFUSE_HOST=${LANGFUSE_HOST}
+      - LANGFUSE_BASE_URL=${LANGFUSE_BASE_URL}
+      - DATABASE_URL=${DATABASE_URL}
+      - LANGGRAPH_DB_URL=${LANGGRAPH_DB_URL}
+      - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
