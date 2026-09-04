@@ -41,6 +41,11 @@ async def resume_graph(decision: str):
             # By doing nothing here, the graph remains safely suspended and won't hit the persist node.
 
 
+@app.get("/")
+def health_check():
+    return {"status": "healthy", "service": "data-reconciliation-engine"}
+
+
 @app.post("/slack/actions")
 async def slack_webhook(request: Request, background_tasks: BackgroundTasks):
     """Catcher's mitt for the Slack button clicks."""
