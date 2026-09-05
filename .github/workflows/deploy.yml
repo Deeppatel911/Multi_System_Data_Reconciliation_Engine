@@ -14,6 +14,18 @@ jobs:
   evaluate:
     name: Run Pytest Evaluation
     runs-on: ubuntu-latest
+    env:
+      LITELLM_BASE_URL: "http://localhost:4000"
+      LITELLM_API_KEY: "sk-litellm-local"
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      LANGFUSE_BASE_URL: ${{ secrets.LANGFUSE_BASE_URL }}
+      LANGFUSE_HOST: ${{ secrets.LANGFUSE_HOST }}
+      LANGFUSE_PUBLIC_KEY: ${{ secrets.LANGFUSE_PUBLIC_KEY }}
+      LANGFUSE_SECRET_KEY: ${{ secrets.LANGFUSE_SECRET_KEY }}
+      LANGGRAPH_DB_URL: ${{ secrets.LANGGRAPH_DB_URL }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -35,18 +47,6 @@ jobs:
           sleep 3 # Give the background proxy a few seconds to boot up
 
       - name: Run Pytest against Golden Dataset
-        env:
-          LITELLM_BASE_URL: "http://localhost:4000"
-          LITELLM_API_KEY: "sk-litellm-local"
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          LANGFUSE_BASE_URL: ${{ secrets.LANGFUSE_BASE_URL }}
-          LANGFUSE_HOST: ${{ secrets.LANGFUSE_HOST }}
-          LANGFUSE_PUBLIC_KEY: ${{ secrets.LANGFUSE_PUBLIC_KEY }}
-          LANGFUSE_SECRET_KEY: ${{ secrets.LANGFUSE_SECRET_KEY }}
-          LANGGRAPH_DB_URL: ${{ secrets.LANGGRAPH_DB_URL }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         run: pytest evals/
 
   deploy:
