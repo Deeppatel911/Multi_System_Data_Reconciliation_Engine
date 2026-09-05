@@ -48,7 +48,7 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-        run: pytest evals/
+        run: pytest -s evals/
 
   deploy:
     name: Build and Deploy to ECS
