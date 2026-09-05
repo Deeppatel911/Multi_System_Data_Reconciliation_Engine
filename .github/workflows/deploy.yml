@@ -42,7 +42,7 @@ jobs:
 
       - name: Start LiteLLM Proxy
         run: |
-          pip install litellm
+          pip install 'litellm[proxy]'
           litellm --config litellm_config.yaml &
           sleep 3 # Give the background proxy a few seconds to boot up
 
