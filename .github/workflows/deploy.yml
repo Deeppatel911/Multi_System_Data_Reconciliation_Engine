@@ -1,0 +1,64 @@
+name: Deploy to AWS ECS
+
+on:
+  push:
+    branches:
+      - main
+
+# Required to exchange a GitHub token for an AWS IAM role token (OIDC)
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  evaluate:
+    name: Run Pytest Evaluation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Pytest against Golden Dataset
+        run: pytest evals/
+
+  deploy:
+    name: Build and Deploy to ECS
+    needs: evaluate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::379151434681:role/GitHubActionsOIDCRole
+          aws-region: us-east-1
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build, Tag, and Push Image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: mdm-api-repo
+          IMAGE_TAG: latest
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+      - name: Force ECS Rolling Deployment
+        run: |
+          aws ecs update-service \
+            --cluster InfraStack-MdmEcsCluster \
+            --service InfraStack-MdmFargateService \
+            --force-new-deployment
