@@ -28,8 +28,16 @@ jobs:
           pip install pytest
           pip install -r requirements.txt
 
+      - name: Start LiteLLM Proxy
+        run: |
+          pip install litellm
+          litellm --config litellm_config.yaml &
+          sleep 3 # Give the background proxy a few seconds to boot up
+
       - name: Run Pytest against Golden Dataset
         env:
+          LITELLM_BASE_URL: "http://localhost:4000"
+          LITELLM_API_KEY: "sk-litellm-local"
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           LANGFUSE_BASE_URL: ${{ secrets.LANGFUSE_BASE_URL }}

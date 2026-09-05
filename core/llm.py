@@ -3,6 +3,8 @@ from langchain_openai import ChatOpenAI
 
 from core.schemas import UnifiedCustomerProfile
 
+import os
+
 load_dotenv()
 
 # ---------------------------------------------------------------------------
@@ -12,8 +14,8 @@ load_dotenv()
 # We talk to our local LiteLLM Proxy on port 4000, which handles the routing.
 # LiteLLM accepts any string for the API key when running locally.
 structured_resolver_llm = ChatOpenAI(
-    base_url="http://host.docker.internal:4000",
-    api_key="sk-litellm-local",
+    base_url=os.getenv("LITELLM_BASE_URL", "http://host.docker.internal:4000"),
+    api_key=os.getenv("LITELLM_API_KEY", "sk-litellm-local"),
     model="mdm-resolver",             # This matches the model_name in our YAML!
     temperature=0
 )
