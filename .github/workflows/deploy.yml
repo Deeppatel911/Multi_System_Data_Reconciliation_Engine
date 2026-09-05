@@ -24,7 +24,9 @@ jobs:
           python-version: "3.11"
 
       - name: Install Dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install pytest
+          pip install -r requirements.txt
 
       - name: Run Pytest against Golden Dataset
         run: pytest evals/
