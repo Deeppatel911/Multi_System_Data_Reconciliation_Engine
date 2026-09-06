@@ -10,6 +10,11 @@ from aws_cdk import (
 )
 from constructs import Construct
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 class InfraStack(Stack):
 
@@ -115,7 +120,19 @@ class InfraStack(Stack):
                 environment={
                     "DATABASE_HOST": self.db.db_instance_endpoint_address,
                     "DATABASE_PORT": "5432",
-                    "DATABASE_NAME": "mdm_db"
+                    "DATABASE_NAME": "mdm_db",
+
+                    "GROQ_API_KEY": os.environ.get("OPENAI_API_KEY", ""),
+                    "SLACK_BOT_TOKEN": os.environ.get("SLACK_BOT_TOKEN", ""),
+                    "LANGFUSE_SECRET_KEY": os.environ.get("LANGFUSE_SECRET_KEY", ""),
+                    "LANGFUSE_PUBLIC_KEY": os.environ.get("LANGFUSE_PUBLIC_KEY", ""),
+                    "LANGFUSE_BASE_URL": os.environ.get("LANGFUSE_HOST", ""),
+                    "LANGFUSE_HOST": os.environ.get("LANGFUSE_HOST", ""),
+                },
+                secrets={
+                    # Securely inject the auto-generated RDS credentials into the container
+                    "DATABASE_USER": ecs.Secret.from_secrets_manager(self.db.secret, "username"),
+                    "DATABASE_PASSWORD": ecs.Secret.from_secrets_manager(self.db.secret, "password")
                 }
             ),
             public_load_balancer=True,

@@ -16,7 +16,18 @@ mcp = FastMCP("Internal_App_DB")
 # ---------------------------------------------------------------------------
 # 1. Async Database Connection
 # ---------------------------------------------------------------------------
-DATABASE_URL = os.environ.get("DATABASE_URL")
+# Dynamic Database URL Constructor for AWS RDS vs Local
+DB_HOST = os.environ.get("DATABASE_HOST")
+
+if DB_HOST:  # If this exists, we are running in the AWS Cloud
+    DB_USER = os.environ.get("DATABASE_USER")
+    DB_PASS = os.environ.get("DATABASE_PASSWORD")
+    DB_PORT = os.environ.get("DATABASE_PORT", "5432")
+    DB_NAME = os.environ.get("DATABASE_NAME", "mdm_db")
+    DATABASE_URL = f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+else:  # Fall back to local .env for local testing
+    DATABASE_URL = os.environ.get("DATABASE_URL")
+
 engine = create_async_engine(DATABASE_URL, echo=False)
 AsyncSessionLocal = async_sessionmaker(engine, expire_on_commit=False)
 

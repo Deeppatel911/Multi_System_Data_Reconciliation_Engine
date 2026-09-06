@@ -12,7 +12,17 @@ from utils.slack_notifier import send_discrepancy_alert
 load_dotenv()
 app = FastAPI()
 
-LANGGRAPH_DB_URL = os.environ.get("LANGGRAPH_DB_URL")
+# Dynamic Database URL Constructor for AWS RDS vs Local
+DB_HOST = os.environ.get("DATABASE_HOST")
+
+if DB_HOST:  # If this exists, we are running in the AWS Cloud
+    DB_USER = os.environ.get("DATABASE_USER")
+    DB_PASS = os.environ.get("DATABASE_PASSWORD")
+    DB_PORT = os.environ.get("DATABASE_PORT", "5432")
+    DB_NAME = os.environ.get("DATABASE_NAME", "mdm_db")
+    LANGGRAPH_DB_URL = f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+else:  # Fall back to local .env for local testing
+    LANGGRAPH_DB_URL = os.environ.get("LANGGRAPH_DB_URL")
 
 
 # ---------------------------------------------------------
