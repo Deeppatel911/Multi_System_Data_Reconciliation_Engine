@@ -122,6 +122,9 @@ class InfraStack(Stack):
                     "DATABASE_PORT": "5432",
                     "DATABASE_NAME": "mdm_db",
 
+                    "LITELLM_BASE_URL": "http://127.0.0.1:4000",
+                    "LITELLM_API_KEY": "sk-litellm-local",
+
                     "OPENAI_API_KEY": os.environ.get("OPENAI_API_KEY", ""),
                     "GROQ_API_KEY": os.environ.get("GROQ_API_KEY", ""),
                     "SLACK_BOT_TOKEN": os.environ.get("SLACK_BOT_TOKEN", ""),

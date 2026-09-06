@@ -30,8 +30,12 @@ RUN pip install --no-cache /wheels/*
 # Copy the entire application code into the container
 COPY . .
 
-# Expose the FastAPI port
-EXPOSE 8000
+# Make the startup script executable
+RUN chmod +x /app/start.sh
 
-# Command to run the FastAPI API server
-CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8000"]
+# Expose ports for both FastAPI and LiteLLM
+EXPOSE 8000
+EXPOSE 4000
+
+# Execute the wrapper script
+CMD ["/app/start.sh"]
