@@ -60,7 +60,7 @@ jobs:
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
-          with:
+        with:
             role-to-assume: arn:aws:iam::379151434681:role/GitHubActionsOIDCRole
             aws-region: us-east-1
             role-skip-session-tagging: true
