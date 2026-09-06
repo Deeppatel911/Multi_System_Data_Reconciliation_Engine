@@ -12,3 +12,4 @@ sqlalchemy
 asyncpg
 psycopg2-binary
 python-dotenv
+slack_sdk
