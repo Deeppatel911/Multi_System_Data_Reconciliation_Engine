@@ -80,7 +80,13 @@ jobs:
 
       - name: Force ECS Rolling Deployment
         run: |
+          CLUSTER_ARN=$(aws ecs list-clusters --query "clusterArns[?contains(@, 'MdmEcsCluster')] | [0]" --output text)
+          SERVICE_ARN=$(aws ecs list-services --cluster "$CLUSTER_ARN" --query "serviceArns[0]" --output text)
+            
+          echo "Discovered Cluster: $CLUSTER_ARN"
+          echo "Discovered Service: $SERVICE_ARN"
+            
           aws ecs update-service \
-            --cluster InfraStack-MdmEcsCluster \
-            --service InfraStack-MdmFargateService \
+            --cluster "$CLUSTER_ARN" \
+            --service "$SERVICE_ARN" \
             --force-new-deployment
