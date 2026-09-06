@@ -6,10 +6,74 @@ import os
 from dotenv import load_dotenv
 from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
 
+from pydantic import BaseModel
+from utils.slack_notifier import send_discrepancy_alert
+
 load_dotenv()
 app = FastAPI()
 
 LANGGRAPH_DB_URL = os.environ.get("LANGGRAPH_DB_URL")
+
+
+# ---------------------------------------------------------
+# NEW: Request Schema for Swagger UI
+# ---------------------------------------------------------
+class ReconcileRequest(BaseModel):
+    query: str
+    thread_id: str = "1"  # Defaulting to 1 to match your resume_graph hardcoding
+
+
+# ---------------------------------------------------------
+# NEW: The End-to-End Trigger Endpoint
+# ---------------------------------------------------------
+@app.post("/reconcile")
+async def start_reconciliation(req: ReconcileRequest):
+    """Kicks off the LangGraph execution in production."""
+    print(f"\nStarting reconciliation for query: '{req.query}' (Thread: {req.thread_id})")
+
+    async with AsyncPostgresSaver.from_conn_string(LANGGRAPH_DB_URL) as memory:
+        await memory.setup()
+
+        # Compile the graph and tell it to pause before human approval
+        engine = graph_builder.compile(
+            checkpointer=memory,
+            interrupt_before=["approval"]
+        )
+
+        initial_state = {
+            "query": req.query,
+            "crm_data": [],
+            "billing_data": [],
+            "app_db_data": [],
+            "canonical_profile": None,
+            "discrepancies": [],
+            "human_approval_required": False
+        }
+
+        config = {"configurable": {"thread_id": req.thread_id}}
+
+        # Run the graph
+        final_state = await engine.ainvoke(initial_state, config=config)
+        current_status = await engine.aget_state(config)
+
+        # If it paused at the approval node, fire the Slack alert
+        if current_status.next == ('approval',):
+            print("\nGraph paused at 'approval'. Firing Slack alert...")
+            send_discrepancy_alert(final_state, thread_id=req.thread_id, channel="#new-channel")
+
+            return {
+                "status": "paused_for_review",
+                "message": "Discrepancies found. Sent to Slack for Human-in-the-Loop approval.",
+                "confidence_score": final_state['canonical_profile'].confidence_metrics.score
+            }
+
+        # If it bypassed approval (clean match), it went straight to persist
+        return {
+            "status": "completed",
+            "message": "High confidence match. Data persisted to DB automatically.",
+            "canonical_id": final_state['canonical_profile'].canonical_id
+        }
+
 
 async def resume_graph(decision: str):
     """Background task to wake up LangGraph and resume execution."""
