@@ -41,7 +41,7 @@ jobs:
 
       - name: Start LiteLLM Proxy
         run: |
-          # Redundant pip install removed. Proxy boots securely.
+          pip install 'litellm[proxy]'
           litellm --config litellm_config.yaml &
           sleep 5 # Give the background proxy a few seconds to boot up
 

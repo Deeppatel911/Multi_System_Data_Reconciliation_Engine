@@ -27,6 +27,9 @@ COPY --from=builder /app/wheels /wheels
 COPY --from=builder /app/requirements.txt .
 RUN pip install --no-cache /wheels/*
 
+# NEW: Install LiteLLM Proxy sequentially to bypass dependency resolver conflicts
+RUN pip install --no-cache 'litellm[proxy]'
+
 # Copy the entire application code into the container
 COPY . .
 
