@@ -122,7 +122,8 @@ class InfraStack(Stack):
                     "DATABASE_PORT": "5432",
                     "DATABASE_NAME": "mdm_db",
 
-                    "GROQ_API_KEY": os.environ.get("OPENAI_API_KEY", ""),
+                    "OPENAI_API_KEY": os.environ.get("OPENAI_API_KEY", ""),
+                    "GROQ_API_KEY": os.environ.get("GROQ_API_KEY", ""),
                     "SLACK_BOT_TOKEN": os.environ.get("SLACK_BOT_TOKEN", ""),
                     "LANGFUSE_SECRET_KEY": os.environ.get("LANGFUSE_SECRET_KEY", ""),
                     "LANGFUSE_PUBLIC_KEY": os.environ.get("LANGFUSE_PUBLIC_KEY", ""),

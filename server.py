@@ -20,7 +20,8 @@ if DB_HOST:  # If this exists, we are running in the AWS Cloud
     DB_PASS = os.environ.get("DATABASE_PASSWORD")
     DB_PORT = os.environ.get("DATABASE_PORT", "5432")
     DB_NAME = os.environ.get("DATABASE_NAME", "mdm_db")
-    LANGGRAPH_DB_URL = f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    # FIX: LangGraph uses psycopg, which strictly requires 'postgresql://'
+    LANGGRAPH_DB_URL = f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 else:  # Fall back to local .env for local testing
     LANGGRAPH_DB_URL = os.environ.get("LANGGRAPH_DB_URL")
 
