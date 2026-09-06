@@ -23,6 +23,7 @@ jobs:
       LANGFUSE_SECRET_KEY: ${{ secrets.LANGFUSE_SECRET_KEY }}
       LANGGRAPH_DB_URL: ${{ secrets.LANGGRAPH_DB_URL }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
     steps:
       - name: Checkout Code
@@ -40,14 +41,13 @@ jobs:
 
       - name: Start LiteLLM Proxy
         run: |
-          pip install 'litellm[proxy]'
+          # Redundant pip install removed. Proxy boots securely.
           litellm --config litellm_config.yaml &
-          sleep 3 # Give the background proxy a few seconds to boot up
+          sleep 5 # Give the background proxy a few seconds to boot up
 
       - name: Run Pytest against Golden Dataset
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: pytest -s evals/
 
   deploy:
