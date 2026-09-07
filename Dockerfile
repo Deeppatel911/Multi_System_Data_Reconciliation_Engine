@@ -8,11 +8,14 @@ RUN apt-get update && apt-get install -y gcc libpq-dev libpq5 && rm -rf /var/lib
 # Copy the requirements file first to leverage Docker layer caching
 COPY requirements.txt .
 
-# Install all main dependencies directly (No brittle wheel stage!)
+# 1. Install LiteLLM Proxy FIRST (so its strict bounds don't ruin our app later)
+RUN pip install --no-cache-dir 'litellm[proxy]'
+
+# 2. Install main requirements
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install LiteLLM Proxy sequentially to prevent dependency conflicts
-RUN pip install --no-cache-dir 'litellm[proxy]'
+# 3. THE SILVER BULLET: Force upgrade the MCP SDK to get 'request_state'
+RUN pip install --no-cache-dir --upgrade mcp fastmcp
 
 # Copy the entire application code into the container
 COPY . .
