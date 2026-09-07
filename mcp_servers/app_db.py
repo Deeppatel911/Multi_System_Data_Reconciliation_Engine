@@ -121,7 +121,4 @@ async def save_canonical_profile(profile: Dict[str, Any]) -> str:
     })
 
 if __name__ == "__main__":
-    import asyncio
-    # Initialize the DB schema before starting the server
-    asyncio.run(init_db())
     mcp.run()

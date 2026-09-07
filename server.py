@@ -142,6 +142,7 @@ async def slack_webhook(request: Request, background_tasks: BackgroundTasks):
         # Pass the decision to the LangGraph engine in the background
         background_tasks.add_task(resume_graph, value)
 
+    # THE FIX: Return a strictly empty 200 OK so Slack doesn't try to parse a JSON body
     return Response(status_code=200) # {"status": "ok"}
 
 
