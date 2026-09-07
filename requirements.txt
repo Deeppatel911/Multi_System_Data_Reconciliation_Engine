@@ -6,7 +6,7 @@ langchain-openai
 langgraph
 langgraph-checkpoint-postgres
 langfuse
-fastmcp
+fastmcp[server]
 pydantic
 sqlalchemy
 asyncpg

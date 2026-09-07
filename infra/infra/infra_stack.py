@@ -111,8 +111,8 @@ class InfraStack(Stack):
         self.fargate_service = ecs_patterns.ApplicationLoadBalancedFargateService(
             self, "MdmFargateService",
             cluster=self.ecs_cluster,
-            cpu=256,  # 0.25 vCPU
-            memory_limit_mib=512,  # 512 MB RAM
+            cpu=512,  # INCREASED: 0.5 vCPU
+            memory_limit_mib=2048,  # INCREASED: 2 GB RAM
             desired_count=1,
             task_image_options=ecs_patterns.ApplicationLoadBalancedTaskImageOptions(
                 image=ecs.ContainerImage.from_ecr_repository(self.ecr_repo, tag="latest"),
