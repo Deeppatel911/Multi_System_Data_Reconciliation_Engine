@@ -1,5 +1,5 @@
 import json
-from fastapi import FastAPI, Request, BackgroundTasks
+from fastapi import FastAPI, Request, BackgroundTasks, Response
 from graph.builder import graph_builder
 
 import os
@@ -97,7 +97,7 @@ async def resume_graph(decision: str):
         engine = graph_builder.compile(checkpointer=memory)
         config = {"configurable": {"thread_id": "1"}}
 
-        if decision == "approve":
+        if decision in ["approve", "approve_resolution"]:
             print("\nWebhook received APPROVE. Resuming graph to persist data...")
 
             # 3. Update the frozen state to indicate the human approved it
@@ -132,7 +132,9 @@ async def slack_webhook(request: Request, background_tasks: BackgroundTasks):
     if payload.get("type") == "block_actions":
         action = payload["actions"][0]
         action_id = action.get("action_id")
-        value = action.get("value")  # This will be "approve" or "reject"
+
+        # FIX: Use action_id as a fallback if value is missing from the payload
+        value = action.get("value") or action_id # This will be "approve" or "reject"
 
         user = payload.get("user", {}).get("username", "Unknown User")
         print(f"\nIncoming Action: {user} clicked '{action_id}'")
@@ -140,7 +142,7 @@ async def slack_webhook(request: Request, background_tasks: BackgroundTasks):
         # Pass the decision to the LangGraph engine in the background
         background_tasks.add_task(resume_graph, value)
 
-    return {"status": "ok"}
+    return Response(status_code=200) # {"status": "ok"}
 
 
 if __name__ == "__main__":
