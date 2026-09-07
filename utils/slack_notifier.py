@@ -52,7 +52,7 @@ def send_discrepancy_alert(state: dict, thread_id: str, channel: str = "#new-cha
                 "type": "section",
                 "fields": [
                     {"type": "mrkdwn", "text": f"*{source}:*\n{value}"}
-                    for source, value in disc.conflicting_values.items()
+                    for source, value in disc.conflicting_values.model_dump().items()
                 ],
             }
         )

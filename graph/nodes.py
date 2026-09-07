@@ -5,12 +5,15 @@ from mcp.client.stdio import stdio_client
 from graph.state import ReconciliationState
 from typing import List, Dict, Any
 
+import os
+
 
 async def _fetch_from_mcp(server_script: str, tool_name: str, query: str) -> List[Dict[str, Any]]:
     """Helper function to open an MCP session and call a specific tool."""
     server_params = StdioServerParameters(
         command="python",
-        args=[server_script]
+        args=[server_script],
+        env=dict(os.environ)
     )
 
     try:
@@ -61,7 +64,8 @@ async def persist_node(state: ReconciliationState) -> dict:
 
     server_params = StdioServerParameters(
         command="python",
-        args=["mcp_servers/app_db.py"]
+        args=["mcp_servers/app_db.py"],
+        env=dict(os.environ)
     )
 
     try:
