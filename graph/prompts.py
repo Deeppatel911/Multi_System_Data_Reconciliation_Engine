@@ -18,15 +18,19 @@ STEP 1 — ENTITY-LEVEL SIMILARITY EVALUATION
 CRITICAL RULES FOR ENTITY MATCHING:
   - STRING MATCHING: 'Inc' and 'LLC' are DIFFERENT corporate entities. Do not normalize them. They represent a substantive conflict. 
   - DOMAIN MISMATCHES: Domains with different top-level extensions (e.g., '.com' vs '.co.uk') represent completely DIFFERENT geographic corporate entities. Cross-reference explicit domain fields AND the domain extracted from the billing_email. If they mismatch geographically, they are NOT the same company.
+
 =====================================================================
 STEP 2 — FIELD-BY-FIELD CANONICALIZATION RULES
 =====================================================================
   - `canonical_id`: Generate a NEW unique identifier (uuid4-style).
   - `company_name`: Prefer the most complete, formally-punctuated legal name (Billing's legal name is authoritative). 
-  - `domain`: Normalize by stripping protocol and "www.". Prefer the App DB domain.
-  - `billing_email`: Prefer the Billing (Stripe) source's email.
-  - `crm_tier`: Sourced strictly from the CRM record.
-  - `is_active`: Treat the App DB record as the system of record.
+  - `domain`: Normalize by stripping protocol and "www." from the CRM website field.
+  - `primary_contact`: Sourced from the CRM source's `primary_contact` email.
+  - `billing_email`: Prefer the Billing (Stripe) source's `billing_email`.
+  - `monthly_recurring_revenue`: Sourced from the Billing (Stripe) source's `monthly_recurring_revenue`.
+  - `crm_tier`: Sourced strictly from the CRM record (`tier`).
+  - `is_active`: Treat the App DB record as the system of record (`is_active`).
+  - `last_login`: Sourced from the App DB record (`last_login`).
 
 =====================================================================
 STEP 3 — DISCREPANCY DETECTION

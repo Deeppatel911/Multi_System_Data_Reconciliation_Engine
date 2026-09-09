@@ -25,8 +25,13 @@ class UnifiedCustomerProfile(BaseModel):
     canonical_id: str = Field(..., description="A newly generated unique ID for the merged profile.")
     company_name: str = Field(..., description="The resolved, canonical company name.")
     domain: str = Field(..., description="The primary web domain.")
+    primary_contact: Optional[str] = Field(None, description="The primary contact email from the CRM.")
     billing_email: Optional[str] = Field(None, description="The resolved billing email contact.")
+    monthly_recurring_revenue: Optional[float] = Field(None, description="The MRR from the billing system.")
     crm_tier: Optional[str] = Field(None, description="The customer tier from the CRM.")
     is_active: bool = Field(..., description="Boolean indicating if the account is currently active.")
+    last_login: Optional[str] = Field(None, description="Most recent login timestamp from the App DB.")
     confidence_metrics: ConfidenceScore
     discrepancies: List[DiscrepancyReport] = Field(default_factory=list, description="List of unresolved discrepancies.")
+
+
