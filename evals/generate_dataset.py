@@ -33,9 +33,12 @@ def generate_benchmark_dataset():
             test_id=f"TC_{i:03d}_CLEAN",
             category="clean_match",
             query=f"company_{i}",
-            crm=[{"id": f"crm_{i}", "name": f"Company {i} Inc", "domain": f"company{i}.com", "tier": "Enterprise"}],
-            billing=[{"id": f"bil_{i}", "name": f"Company {i} Inc", "email": f"billing@company{i}.com"}],
-            app_db=[{"id": f"app_{i}", "name": f"Company {i} Inc", "status": "active"}],
+            crm=[{"crm_id": f"sf_{i:03d}", "company_name": f"Company {i} Inc", "website": f"company{i}.com",
+                  "tier": "Enterprise", "primary_contact": f"admin@company{i}.com"}],
+            billing=[{"stripe_id": f"cus_{i:03d}", "legal_name": f"Company {i} Inc",
+                      "billing_email": f"finance@company{i}.com", "monthly_recurring_revenue": 5000}],
+            app_db=[{"user_id": f"usr_{i:03d}", "company": f"Company {i} Inc", "email": f"admin@company{i}.com",
+                     "is_active": True, "last_login": "2026-09-01"}],
             expected_merge=True,
             expected_discrepancies=0,
             expected_human_review=False
@@ -51,9 +54,12 @@ def generate_benchmark_dataset():
             test_id=f"TC_{i:03d}_EDGE",
             category="edge_case_discrepancy",
             query=f"startup_{i}",
-            crm=[{"id": f"crm_{i}", "name": f"Startup {i}", "domain": f"startup{i}.io", "tier": "Pro"}],
-            billing=[{"id": f"bil_{i}", "name": f"Startup {i} LLC", "email": None}],  # Missing email, added LLC
-            app_db=[{"id": f"app_{i}", "name": f"Startup {i}", "status": "active"}],
+            crm=[{"crm_id": f"sf_{i:03d}", "company_name": f"Startup {i}", "website": f"startup{i}.io",
+                  "tier": "Startup", "primary_contact": f"founder@startup{i}.io"}],
+            billing=[{"stripe_id": f"cus_{i:03d}", "legal_name": f"Startup {i} LLC", "billing_email": None,
+                      "monthly_recurring_revenue": 1200}], # Missing email, added LLC
+            app_db=[{"user_id": f"usr_{i:03d}", "company": f"Startup {i}", "email": f"founder@startup{i}.io",
+                     "is_active": True, "last_login": "2026-09-05"}],
             expected_merge=True,
             expected_discrepancies=1,  # Name suffix mismatch, missing email
             expected_human_review=True  # Discrepancies should trigger HITL
@@ -69,11 +75,14 @@ def generate_benchmark_dataset():
             category="distinct_entities",
             query=f"global_tech_{i}",
             # US Branch
-            crm=[{"id": f"crm_{i}a", "name": f"Global Tech {i}", "domain": f"globaltech{i}.com", "tier": "Enterprise"}],
+            crm=[{"crm_id": f"sf_{i:03d}a", "company_name": f"Global Tech {i}", "website": f"globaltech{i}.com",
+                  "tier": "Enterprise", "primary_contact": f"admin@globaltech{i}.com"}],
             # UK Branch (Different domain, different email)
-            billing=[{"id": f"bil_{i}b", "name": f"Global Tech {i} Ltd", "email": f"finance@globaltech{i}.co.uk"}],
+            billing=[{"stripe_id": f"cus_{i:03d}b", "legal_name": f"Global Tech {i} Ltd",
+                      "billing_email": f"finance@globaltech{i}.co.uk", "monthly_recurring_revenue": 8500}],
             # App DB shows the US branch
-            app_db=[{"id": f"app_{i}a", "name": f"Global Tech {i}", "status": "active"}],
+            app_db=[{"user_id": f"usr_{i:03d}a", "company": f"Global Tech {i}", "email": f"admin@globaltech{i}.com",
+                     "is_active": True, "last_login": "2026-08-20"}],
             expected_merge=False,  # The LLM should realize .com and .co.uk are distinct corporate entities
             expected_discrepancies=2,
             expected_human_review=True  # Low confidence should trigger HITL

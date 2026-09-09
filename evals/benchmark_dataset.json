@@ -6,24 +6,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_1",
-                    "name": "Company 1 Inc",
-                    "domain": "company1.com",
-                    "tier": "Enterprise"
+                    "crm_id": "sf_001",
+                    "company_name": "Company 1 Inc",
+                    "website": "company1.com",
+                    "tier": "Enterprise",
+                    "primary_contact": "admin@company1.com"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_1",
-                    "name": "Company 1 Inc",
-                    "email": "billing@company1.com"
+                    "stripe_id": "cus_001",
+                    "legal_name": "Company 1 Inc",
+                    "billing_email": "finance@company1.com",
+                    "monthly_recurring_revenue": 5000
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_1",
-                    "name": "Company 1 Inc",
-                    "status": "active"
+                    "user_id": "usr_001",
+                    "company": "Company 1 Inc",
+                    "email": "admin@company1.com",
+                    "is_active": true,
+                    "last_login": "2026-09-01"
                 }
             ]
         },
@@ -40,24 +44,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_2",
-                    "name": "Company 2 Inc",
-                    "domain": "company2.com",
-                    "tier": "Enterprise"
+                    "crm_id": "sf_002",
+                    "company_name": "Company 2 Inc",
+                    "website": "company2.com",
+                    "tier": "Enterprise",
+                    "primary_contact": "admin@company2.com"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_2",
-                    "name": "Company 2 Inc",
-                    "email": "billing@company2.com"
+                    "stripe_id": "cus_002",
+                    "legal_name": "Company 2 Inc",
+                    "billing_email": "finance@company2.com",
+                    "monthly_recurring_revenue": 5000
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_2",
-                    "name": "Company 2 Inc",
-                    "status": "active"
+                    "user_id": "usr_002",
+                    "company": "Company 2 Inc",
+                    "email": "admin@company2.com",
+                    "is_active": true,
+                    "last_login": "2026-09-01"
                 }
             ]
         },
@@ -74,24 +82,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_3",
-                    "name": "Company 3 Inc",
-                    "domain": "company3.com",
-                    "tier": "Enterprise"
+                    "crm_id": "sf_003",
+                    "company_name": "Company 3 Inc",
+                    "website": "company3.com",
+                    "tier": "Enterprise",
+                    "primary_contact": "admin@company3.com"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_3",
-                    "name": "Company 3 Inc",
-                    "email": "billing@company3.com"
+                    "stripe_id": "cus_003",
+                    "legal_name": "Company 3 Inc",
+                    "billing_email": "finance@company3.com",
+                    "monthly_recurring_revenue": 5000
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_3",
-                    "name": "Company 3 Inc",
-                    "status": "active"
+                    "user_id": "usr_003",
+                    "company": "Company 3 Inc",
+                    "email": "admin@company3.com",
+                    "is_active": true,
+                    "last_login": "2026-09-01"
                 }
             ]
         },
@@ -108,24 +120,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_4",
-                    "name": "Company 4 Inc",
-                    "domain": "company4.com",
-                    "tier": "Enterprise"
+                    "crm_id": "sf_004",
+                    "company_name": "Company 4 Inc",
+                    "website": "company4.com",
+                    "tier": "Enterprise",
+                    "primary_contact": "admin@company4.com"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_4",
-                    "name": "Company 4 Inc",
-                    "email": "billing@company4.com"
+                    "stripe_id": "cus_004",
+                    "legal_name": "Company 4 Inc",
+                    "billing_email": "finance@company4.com",
+                    "monthly_recurring_revenue": 5000
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_4",
-                    "name": "Company 4 Inc",
-                    "status": "active"
+                    "user_id": "usr_004",
+                    "company": "Company 4 Inc",
+                    "email": "admin@company4.com",
+                    "is_active": true,
+                    "last_login": "2026-09-01"
                 }
             ]
         },
@@ -142,24 +158,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_5",
-                    "name": "Company 5 Inc",
-                    "domain": "company5.com",
-                    "tier": "Enterprise"
+                    "crm_id": "sf_005",
+                    "company_name": "Company 5 Inc",
+                    "website": "company5.com",
+                    "tier": "Enterprise",
+                    "primary_contact": "admin@company5.com"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_5",
-                    "name": "Company 5 Inc",
-                    "email": "billing@company5.com"
+                    "stripe_id": "cus_005",
+                    "legal_name": "Company 5 Inc",
+                    "billing_email": "finance@company5.com",
+                    "monthly_recurring_revenue": 5000
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_5",
-                    "name": "Company 5 Inc",
-                    "status": "active"
+                    "user_id": "usr_005",
+                    "company": "Company 5 Inc",
+                    "email": "admin@company5.com",
+                    "is_active": true,
+                    "last_login": "2026-09-01"
                 }
             ]
         },
@@ -176,24 +196,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_6",
-                    "name": "Company 6 Inc",
-                    "domain": "company6.com",
-                    "tier": "Enterprise"
+                    "crm_id": "sf_006",
+                    "company_name": "Company 6 Inc",
+                    "website": "company6.com",
+                    "tier": "Enterprise",
+                    "primary_contact": "admin@company6.com"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_6",
-                    "name": "Company 6 Inc",
-                    "email": "billing@company6.com"
+                    "stripe_id": "cus_006",
+                    "legal_name": "Company 6 Inc",
+                    "billing_email": "finance@company6.com",
+                    "monthly_recurring_revenue": 5000
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_6",
-                    "name": "Company 6 Inc",
-                    "status": "active"
+                    "user_id": "usr_006",
+                    "company": "Company 6 Inc",
+                    "email": "admin@company6.com",
+                    "is_active": true,
+                    "last_login": "2026-09-01"
                 }
             ]
         },
@@ -210,24 +234,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_7",
-                    "name": "Company 7 Inc",
-                    "domain": "company7.com",
-                    "tier": "Enterprise"
+                    "crm_id": "sf_007",
+                    "company_name": "Company 7 Inc",
+                    "website": "company7.com",
+                    "tier": "Enterprise",
+                    "primary_contact": "admin@company7.com"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_7",
-                    "name": "Company 7 Inc",
-                    "email": "billing@company7.com"
+                    "stripe_id": "cus_007",
+                    "legal_name": "Company 7 Inc",
+                    "billing_email": "finance@company7.com",
+                    "monthly_recurring_revenue": 5000
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_7",
-                    "name": "Company 7 Inc",
-                    "status": "active"
+                    "user_id": "usr_007",
+                    "company": "Company 7 Inc",
+                    "email": "admin@company7.com",
+                    "is_active": true,
+                    "last_login": "2026-09-01"
                 }
             ]
         },
@@ -244,24 +272,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_8",
-                    "name": "Company 8 Inc",
-                    "domain": "company8.com",
-                    "tier": "Enterprise"
+                    "crm_id": "sf_008",
+                    "company_name": "Company 8 Inc",
+                    "website": "company8.com",
+                    "tier": "Enterprise",
+                    "primary_contact": "admin@company8.com"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_8",
-                    "name": "Company 8 Inc",
-                    "email": "billing@company8.com"
+                    "stripe_id": "cus_008",
+                    "legal_name": "Company 8 Inc",
+                    "billing_email": "finance@company8.com",
+                    "monthly_recurring_revenue": 5000
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_8",
-                    "name": "Company 8 Inc",
-                    "status": "active"
+                    "user_id": "usr_008",
+                    "company": "Company 8 Inc",
+                    "email": "admin@company8.com",
+                    "is_active": true,
+                    "last_login": "2026-09-01"
                 }
             ]
         },
@@ -278,24 +310,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_9",
-                    "name": "Startup 9",
-                    "domain": "startup9.io",
-                    "tier": "Pro"
+                    "crm_id": "sf_009",
+                    "company_name": "Startup 9",
+                    "website": "startup9.io",
+                    "tier": "Startup",
+                    "primary_contact": "founder@startup9.io"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_9",
-                    "name": "Startup 9 LLC",
-                    "email": null
+                    "stripe_id": "cus_009",
+                    "legal_name": "Startup 9 LLC",
+                    "billing_email": null,
+                    "monthly_recurring_revenue": 1200
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_9",
-                    "name": "Startup 9",
-                    "status": "active"
+                    "user_id": "usr_009",
+                    "company": "Startup 9",
+                    "email": "founder@startup9.io",
+                    "is_active": true,
+                    "last_login": "2026-09-05"
                 }
             ]
         },
@@ -312,24 +348,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_10",
-                    "name": "Startup 10",
-                    "domain": "startup10.io",
-                    "tier": "Pro"
+                    "crm_id": "sf_010",
+                    "company_name": "Startup 10",
+                    "website": "startup10.io",
+                    "tier": "Startup",
+                    "primary_contact": "founder@startup10.io"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_10",
-                    "name": "Startup 10 LLC",
-                    "email": null
+                    "stripe_id": "cus_010",
+                    "legal_name": "Startup 10 LLC",
+                    "billing_email": null,
+                    "monthly_recurring_revenue": 1200
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_10",
-                    "name": "Startup 10",
-                    "status": "active"
+                    "user_id": "usr_010",
+                    "company": "Startup 10",
+                    "email": "founder@startup10.io",
+                    "is_active": true,
+                    "last_login": "2026-09-05"
                 }
             ]
         },
@@ -346,24 +386,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_11",
-                    "name": "Startup 11",
-                    "domain": "startup11.io",
-                    "tier": "Pro"
+                    "crm_id": "sf_011",
+                    "company_name": "Startup 11",
+                    "website": "startup11.io",
+                    "tier": "Startup",
+                    "primary_contact": "founder@startup11.io"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_11",
-                    "name": "Startup 11 LLC",
-                    "email": null
+                    "stripe_id": "cus_011",
+                    "legal_name": "Startup 11 LLC",
+                    "billing_email": null,
+                    "monthly_recurring_revenue": 1200
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_11",
-                    "name": "Startup 11",
-                    "status": "active"
+                    "user_id": "usr_011",
+                    "company": "Startup 11",
+                    "email": "founder@startup11.io",
+                    "is_active": true,
+                    "last_login": "2026-09-05"
                 }
             ]
         },
@@ -380,24 +424,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_12",
-                    "name": "Startup 12",
-                    "domain": "startup12.io",
-                    "tier": "Pro"
+                    "crm_id": "sf_012",
+                    "company_name": "Startup 12",
+                    "website": "startup12.io",
+                    "tier": "Startup",
+                    "primary_contact": "founder@startup12.io"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_12",
-                    "name": "Startup 12 LLC",
-                    "email": null
+                    "stripe_id": "cus_012",
+                    "legal_name": "Startup 12 LLC",
+                    "billing_email": null,
+                    "monthly_recurring_revenue": 1200
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_12",
-                    "name": "Startup 12",
-                    "status": "active"
+                    "user_id": "usr_012",
+                    "company": "Startup 12",
+                    "email": "founder@startup12.io",
+                    "is_active": true,
+                    "last_login": "2026-09-05"
                 }
             ]
         },
@@ -414,24 +462,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_13",
-                    "name": "Startup 13",
-                    "domain": "startup13.io",
-                    "tier": "Pro"
+                    "crm_id": "sf_013",
+                    "company_name": "Startup 13",
+                    "website": "startup13.io",
+                    "tier": "Startup",
+                    "primary_contact": "founder@startup13.io"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_13",
-                    "name": "Startup 13 LLC",
-                    "email": null
+                    "stripe_id": "cus_013",
+                    "legal_name": "Startup 13 LLC",
+                    "billing_email": null,
+                    "monthly_recurring_revenue": 1200
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_13",
-                    "name": "Startup 13",
-                    "status": "active"
+                    "user_id": "usr_013",
+                    "company": "Startup 13",
+                    "email": "founder@startup13.io",
+                    "is_active": true,
+                    "last_login": "2026-09-05"
                 }
             ]
         },
@@ -448,24 +500,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_14",
-                    "name": "Startup 14",
-                    "domain": "startup14.io",
-                    "tier": "Pro"
+                    "crm_id": "sf_014",
+                    "company_name": "Startup 14",
+                    "website": "startup14.io",
+                    "tier": "Startup",
+                    "primary_contact": "founder@startup14.io"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_14",
-                    "name": "Startup 14 LLC",
-                    "email": null
+                    "stripe_id": "cus_014",
+                    "legal_name": "Startup 14 LLC",
+                    "billing_email": null,
+                    "monthly_recurring_revenue": 1200
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_14",
-                    "name": "Startup 14",
-                    "status": "active"
+                    "user_id": "usr_014",
+                    "company": "Startup 14",
+                    "email": "founder@startup14.io",
+                    "is_active": true,
+                    "last_login": "2026-09-05"
                 }
             ]
         },
@@ -482,24 +538,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_15",
-                    "name": "Startup 15",
-                    "domain": "startup15.io",
-                    "tier": "Pro"
+                    "crm_id": "sf_015",
+                    "company_name": "Startup 15",
+                    "website": "startup15.io",
+                    "tier": "Startup",
+                    "primary_contact": "founder@startup15.io"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_15",
-                    "name": "Startup 15 LLC",
-                    "email": null
+                    "stripe_id": "cus_015",
+                    "legal_name": "Startup 15 LLC",
+                    "billing_email": null,
+                    "monthly_recurring_revenue": 1200
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_15",
-                    "name": "Startup 15",
-                    "status": "active"
+                    "user_id": "usr_015",
+                    "company": "Startup 15",
+                    "email": "founder@startup15.io",
+                    "is_active": true,
+                    "last_login": "2026-09-05"
                 }
             ]
         },
@@ -516,24 +576,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_16",
-                    "name": "Startup 16",
-                    "domain": "startup16.io",
-                    "tier": "Pro"
+                    "crm_id": "sf_016",
+                    "company_name": "Startup 16",
+                    "website": "startup16.io",
+                    "tier": "Startup",
+                    "primary_contact": "founder@startup16.io"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_16",
-                    "name": "Startup 16 LLC",
-                    "email": null
+                    "stripe_id": "cus_016",
+                    "legal_name": "Startup 16 LLC",
+                    "billing_email": null,
+                    "monthly_recurring_revenue": 1200
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_16",
-                    "name": "Startup 16",
-                    "status": "active"
+                    "user_id": "usr_016",
+                    "company": "Startup 16",
+                    "email": "founder@startup16.io",
+                    "is_active": true,
+                    "last_login": "2026-09-05"
                 }
             ]
         },
@@ -550,24 +614,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_17",
-                    "name": "Startup 17",
-                    "domain": "startup17.io",
-                    "tier": "Pro"
+                    "crm_id": "sf_017",
+                    "company_name": "Startup 17",
+                    "website": "startup17.io",
+                    "tier": "Startup",
+                    "primary_contact": "founder@startup17.io"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_17",
-                    "name": "Startup 17 LLC",
-                    "email": null
+                    "stripe_id": "cus_017",
+                    "legal_name": "Startup 17 LLC",
+                    "billing_email": null,
+                    "monthly_recurring_revenue": 1200
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_17",
-                    "name": "Startup 17",
-                    "status": "active"
+                    "user_id": "usr_017",
+                    "company": "Startup 17",
+                    "email": "founder@startup17.io",
+                    "is_active": true,
+                    "last_login": "2026-09-05"
                 }
             ]
         },
@@ -584,24 +652,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_18a",
-                    "name": "Global Tech 18",
-                    "domain": "globaltech18.com",
-                    "tier": "Enterprise"
+                    "crm_id": "sf_018a",
+                    "company_name": "Global Tech 18",
+                    "website": "globaltech18.com",
+                    "tier": "Enterprise",
+                    "primary_contact": "admin@globaltech18.com"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_18b",
-                    "name": "Global Tech 18 Ltd",
-                    "email": "finance@globaltech18.co.uk"
+                    "stripe_id": "cus_018b",
+                    "legal_name": "Global Tech 18 Ltd",
+                    "billing_email": "finance@globaltech18.co.uk",
+                    "monthly_recurring_revenue": 8500
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_18a",
-                    "name": "Global Tech 18",
-                    "status": "active"
+                    "user_id": "usr_018a",
+                    "company": "Global Tech 18",
+                    "email": "admin@globaltech18.com",
+                    "is_active": true,
+                    "last_login": "2026-08-20"
                 }
             ]
         },
@@ -618,24 +690,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_19a",
-                    "name": "Global Tech 19",
-                    "domain": "globaltech19.com",
-                    "tier": "Enterprise"
+                    "crm_id": "sf_019a",
+                    "company_name": "Global Tech 19",
+                    "website": "globaltech19.com",
+                    "tier": "Enterprise",
+                    "primary_contact": "admin@globaltech19.com"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_19b",
-                    "name": "Global Tech 19 Ltd",
-                    "email": "finance@globaltech19.co.uk"
+                    "stripe_id": "cus_019b",
+                    "legal_name": "Global Tech 19 Ltd",
+                    "billing_email": "finance@globaltech19.co.uk",
+                    "monthly_recurring_revenue": 8500
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_19a",
-                    "name": "Global Tech 19",
-                    "status": "active"
+                    "user_id": "usr_019a",
+                    "company": "Global Tech 19",
+                    "email": "admin@globaltech19.com",
+                    "is_active": true,
+                    "last_login": "2026-08-20"
                 }
             ]
         },
@@ -652,24 +728,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_20a",
-                    "name": "Global Tech 20",
-                    "domain": "globaltech20.com",
-                    "tier": "Enterprise"
+                    "crm_id": "sf_020a",
+                    "company_name": "Global Tech 20",
+                    "website": "globaltech20.com",
+                    "tier": "Enterprise",
+                    "primary_contact": "admin@globaltech20.com"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_20b",
-                    "name": "Global Tech 20 Ltd",
-                    "email": "finance@globaltech20.co.uk"
+                    "stripe_id": "cus_020b",
+                    "legal_name": "Global Tech 20 Ltd",
+                    "billing_email": "finance@globaltech20.co.uk",
+                    "monthly_recurring_revenue": 8500
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_20a",
-                    "name": "Global Tech 20",
-                    "status": "active"
+                    "user_id": "usr_020a",
+                    "company": "Global Tech 20",
+                    "email": "admin@globaltech20.com",
+                    "is_active": true,
+                    "last_login": "2026-08-20"
                 }
             ]
         },
@@ -686,24 +766,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_21a",
-                    "name": "Global Tech 21",
-                    "domain": "globaltech21.com",
-                    "tier": "Enterprise"
+                    "crm_id": "sf_021a",
+                    "company_name": "Global Tech 21",
+                    "website": "globaltech21.com",
+                    "tier": "Enterprise",
+                    "primary_contact": "admin@globaltech21.com"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_21b",
-                    "name": "Global Tech 21 Ltd",
-                    "email": "finance@globaltech21.co.uk"
+                    "stripe_id": "cus_021b",
+                    "legal_name": "Global Tech 21 Ltd",
+                    "billing_email": "finance@globaltech21.co.uk",
+                    "monthly_recurring_revenue": 8500
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_21a",
-                    "name": "Global Tech 21",
-                    "status": "active"
+                    "user_id": "usr_021a",
+                    "company": "Global Tech 21",
+                    "email": "admin@globaltech21.com",
+                    "is_active": true,
+                    "last_login": "2026-08-20"
                 }
             ]
         },
@@ -720,24 +804,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_22a",
-                    "name": "Global Tech 22",
-                    "domain": "globaltech22.com",
-                    "tier": "Enterprise"
+                    "crm_id": "sf_022a",
+                    "company_name": "Global Tech 22",
+                    "website": "globaltech22.com",
+                    "tier": "Enterprise",
+                    "primary_contact": "admin@globaltech22.com"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_22b",
-                    "name": "Global Tech 22 Ltd",
-                    "email": "finance@globaltech22.co.uk"
+                    "stripe_id": "cus_022b",
+                    "legal_name": "Global Tech 22 Ltd",
+                    "billing_email": "finance@globaltech22.co.uk",
+                    "monthly_recurring_revenue": 8500
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_22a",
-                    "name": "Global Tech 22",
-                    "status": "active"
+                    "user_id": "usr_022a",
+                    "company": "Global Tech 22",
+                    "email": "admin@globaltech22.com",
+                    "is_active": true,
+                    "last_login": "2026-08-20"
                 }
             ]
         },
@@ -754,24 +842,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_23a",
-                    "name": "Global Tech 23",
-                    "domain": "globaltech23.com",
-                    "tier": "Enterprise"
+                    "crm_id": "sf_023a",
+                    "company_name": "Global Tech 23",
+                    "website": "globaltech23.com",
+                    "tier": "Enterprise",
+                    "primary_contact": "admin@globaltech23.com"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_23b",
-                    "name": "Global Tech 23 Ltd",
-                    "email": "finance@globaltech23.co.uk"
+                    "stripe_id": "cus_023b",
+                    "legal_name": "Global Tech 23 Ltd",
+                    "billing_email": "finance@globaltech23.co.uk",
+                    "monthly_recurring_revenue": 8500
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_23a",
-                    "name": "Global Tech 23",
-                    "status": "active"
+                    "user_id": "usr_023a",
+                    "company": "Global Tech 23",
+                    "email": "admin@globaltech23.com",
+                    "is_active": true,
+                    "last_login": "2026-08-20"
                 }
             ]
         },
@@ -788,24 +880,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_24a",
-                    "name": "Global Tech 24",
-                    "domain": "globaltech24.com",
-                    "tier": "Enterprise"
+                    "crm_id": "sf_024a",
+                    "company_name": "Global Tech 24",
+                    "website": "globaltech24.com",
+                    "tier": "Enterprise",
+                    "primary_contact": "admin@globaltech24.com"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_24b",
-                    "name": "Global Tech 24 Ltd",
-                    "email": "finance@globaltech24.co.uk"
+                    "stripe_id": "cus_024b",
+                    "legal_name": "Global Tech 24 Ltd",
+                    "billing_email": "finance@globaltech24.co.uk",
+                    "monthly_recurring_revenue": 8500
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_24a",
-                    "name": "Global Tech 24",
-                    "status": "active"
+                    "user_id": "usr_024a",
+                    "company": "Global Tech 24",
+                    "email": "admin@globaltech24.com",
+                    "is_active": true,
+                    "last_login": "2026-08-20"
                 }
             ]
         },
@@ -822,24 +918,28 @@
         "inputs": {
             "crm_data": [
                 {
-                    "id": "crm_25a",
-                    "name": "Global Tech 25",
-                    "domain": "globaltech25.com",
-                    "tier": "Enterprise"
+                    "crm_id": "sf_025a",
+                    "company_name": "Global Tech 25",
+                    "website": "globaltech25.com",
+                    "tier": "Enterprise",
+                    "primary_contact": "admin@globaltech25.com"
                 }
             ],
             "billing_data": [
                 {
-                    "id": "bil_25b",
-                    "name": "Global Tech 25 Ltd",
-                    "email": "finance@globaltech25.co.uk"
+                    "stripe_id": "cus_025b",
+                    "legal_name": "Global Tech 25 Ltd",
+                    "billing_email": "finance@globaltech25.co.uk",
+                    "monthly_recurring_revenue": 8500
                 }
             ],
             "app_db_data": [
                 {
-                    "id": "app_25a",
-                    "name": "Global Tech 25",
-                    "status": "active"
+                    "user_id": "usr_025a",
+                    "company": "Global Tech 25",
+                    "email": "admin@globaltech25.com",
+                    "is_active": true,
+                    "last_login": "2026-08-20"
                 }
             ]
         },
