@@ -37,6 +37,9 @@ CRITICAL DISCREPANCY RULE - MISSING DATA IS NOT A CONFLICT:
 Do NOT report a discrepancy if a field is simply missing or `null` in a source. Specialized systems are not expected to have all fields (e.g., Billing won't have a `crm_tier`). 
 A true discrepancy ONLY occurs when two or more sources explicitly provide DIFFERENT, non-null values for the same field (e.g., 'Inc' vs 'LLC', or two different domains).
 
+CRITICAL DISCREPANCY RULE - ROLE-BASED EMAILS ARE NOT CONFLICTS:
+It is standard business practice for CRM systems to use a general contact (e.g., admin@...) and Billing systems to use a finance contact (e.g., finance@...). Do NOT flag differing email prefixes as a discrepancy as long as the core domain matches.
+
 =====================================================================
 STEP 4 — CONFIDENCE SCORING
 =====================================================================
