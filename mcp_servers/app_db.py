@@ -77,6 +77,20 @@ async def init_db():
             await session.commit()
 
 
+async def fetch_canonical_by_company(company_name: str) -> List[Dict[str, Any]]:
+    """Retrieves and filters canonical profiles from the DB."""
+    await init_db()
+    async with AsyncSessionLocal() as session:
+        stmt = select(CanonicalProfile)
+        result = await session.execute(stmt)
+        profiles = result.scalars().all()
+
+        return [
+            p.profile_data for p in profiles
+            if p.profile_data and company_name.lower() in p.profile_data.get("company_name", "").lower()
+        ]
+
+
 # ---------------------------------------------------------------------------
 # 4. MCP Tools
 # ---------------------------------------------------------------------------

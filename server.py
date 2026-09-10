@@ -9,6 +9,8 @@ from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
 from pydantic import BaseModel
 from utils.slack_notifier import send_discrepancy_alert
 
+from mcp_servers.app_db import fetch_canonical_by_company
+
 load_dotenv()
 app = FastAPI()
 
@@ -84,6 +86,16 @@ async def start_reconciliation(req: ReconcileRequest):
             "message": "High confidence match. Data persisted to DB automatically.",
             "canonical_id": final_state['canonical_profile'].canonical_id
         }
+
+
+@app.get("/canonical/{company_name}")
+async def get_canonical_record(company_name: str):
+    """Retrieves the Golden Record from RDS via company lookup."""
+    matches = await fetch_canonical_by_company(company_name)
+    return {
+        "count": len(matches),
+        "records": matches
+    }
 
 
 async def resume_graph(decision: str):
