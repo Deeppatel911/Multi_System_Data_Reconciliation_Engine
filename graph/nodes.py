@@ -3,30 +3,13 @@ import json
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 from graph.state import ReconciliationState
-from typing import List, Dict, Any
 
 import os
 
-
-async def _fetch_from_mcp(server_script: str, tool_name: str, query: str) -> List[Dict[str, Any]]:
-    """Helper function to open an MCP session and call a specific tool."""
-    server_params = StdioServerParameters(
-        command="python",
-        args=[server_script],
-        env=dict(os.environ)
-    )
-
-    try:
-        async with stdio_client(server_params) as (read, write):
-            async with ClientSession(read, write) as session:
-                await session.initialize()
-                result = await session.call_tool(tool_name, arguments={"query": query})
-
-                # FastMCP returns the JSON as a string inside the content object; we parse it back to a Python list
-                return json.loads(result.content[0].text)
-    except Exception as e:
-        print(f"Error fetching from {server_script}: {e}")
-        return []
+# Import the tool functions directly, bypassing the stdio subprocess overhead
+from mcp_servers.crm import search_crm_records
+from mcp_servers.billing import search_billing_records
+from mcp_servers.app_db import search_app_db, save_canonical_profile
 
 
 async def fetch_all_data_node(state: ReconciliationState) -> dict:
@@ -35,9 +18,11 @@ async def fetch_all_data_node(state: ReconciliationState) -> dict:
     print(f"\nFetching data in parallel for query: '{query}'...")
 
     # 1. Dispatch all three tasks simultaneously
-    crm_task = _fetch_from_mcp("mcp_servers/crm.py", "search_crm_records", query)
-    billing_task = _fetch_from_mcp("mcp_servers/billing.py", "search_billing_records", query)
-    app_db_task = _fetch_from_mcp("mcp_servers/app_db.py", "search_app_db", query)
+    # CRM and Billing are synchronous functions, so we offload them to threads.
+    # App DB is already async, so we await it directly.
+    crm_task = asyncio.to_thread(search_crm_records, query)
+    billing_task = asyncio.to_thread(search_billing_records, query)
+    app_db_task = search_app_db(query)
 
     # 2. Await them all together
     crm_res, billing_res, app_db_res = await asyncio.gather(crm_task, billing_task, app_db_task)
@@ -69,15 +54,9 @@ async def persist_node(state: ReconciliationState) -> dict:
     )
 
     try:
-        async with stdio_client(server_params) as (read, write):
-            async with ClientSession(read, write) as session:
-                await session.initialize()
-                result = await session.call_tool(
-                    "save_canonical_profile",
-                    arguments={"profile": profile_dict}
-                )
-                response = json.loads(result.content[0].text)
-                print(f"Canonical profile saved successfully: {response}")
+        # Directly await the async database save function
+        response = await save_canonical_profile(profile_dict)
+        print(f"Canonical profile saved successfully: {response}")
     except Exception as e:
         print(f"Error persisting canonical profile: {e}")
 

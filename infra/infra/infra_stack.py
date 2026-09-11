@@ -5,6 +5,7 @@ from aws_cdk import (
     aws_ecr as ecr,
     aws_ecs as ecs,
     aws_ecs_patterns as ecs_patterns,
+    aws_iam as iam,
     RemovalPolicy,
     CfnOutput
 )
@@ -114,6 +115,7 @@ class InfraStack(Stack):
             cpu=512,  # INCREASED: 0.5 vCPU
             memory_limit_mib=2048,  # INCREASED: 2 GB RAM
             desired_count=1,
+            enable_execute_command=True, # CRITICAL: Enables ECS Exec / SSM tunneling
             task_image_options=ecs_patterns.ApplicationLoadBalancedTaskImageOptions(
                 image=ecs.ContainerImage.from_ecr_repository(self.ecr_repo, tag="latest"),
                 container_port=8000,
@@ -145,6 +147,11 @@ class InfraStack(Stack):
             task_subnets=ec2.SubnetSelection(
                 subnet_type=ec2.SubnetType.PRIVATE_WITH_EGRESS
             )
+        )
+
+        # Grant SSM permissions to the Fargate task role
+        self.fargate_service.task_definition.task_role.add_managed_policy(
+            iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMManagedInstanceCore")
         )
 
         # Allow the Fargate container security group to talk to the RDS database security group on port 5432

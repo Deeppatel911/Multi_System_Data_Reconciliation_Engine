@@ -9,10 +9,22 @@ from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
 from pydantic import BaseModel
 from utils.slack_notifier import send_discrepancy_alert
 
-from mcp_servers.app_db import fetch_canonical_by_company
+from mcp_servers.app_db import fetch_canonical_by_company, fetch_all_canonical_records
+
+import time
 
 load_dotenv()
 app = FastAPI()
+
+
+@app.middleware("http")
+async def add_process_time_header(request: Request, call_next):
+    start_time = time.perf_counter()
+    response = await call_next(request)
+    process_time = time.perf_counter() - start_time
+    response.headers["X-Process-Time"] = str(process_time)
+    print(f"Endpoint {request.url.path} executed in {process_time:.4f} seconds")
+    return response
 
 # Dynamic Database URL Constructor for AWS RDS vs Local
 DB_HOST = os.environ.get("DATABASE_HOST")
@@ -86,6 +98,16 @@ async def start_reconciliation(req: ReconcileRequest):
             "message": "High confidence match. Data persisted to DB automatically.",
             "canonical_id": final_state['canonical_profile'].canonical_id
         }
+
+
+@app.get("/canonical")
+async def get_all_canonical_records():
+    """Retrieves all Golden Records from the system."""
+    records = await fetch_all_canonical_records()
+    return {
+        "count": len(records),
+        "records": records
+    }
 
 
 @app.get("/canonical/{company_name}")
