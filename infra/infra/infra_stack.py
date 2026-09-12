@@ -154,6 +154,14 @@ class InfraStack(Stack):
             iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMManagedInstanceCore")
         )
 
+        # Add this underneath your existing SSM managed policy in infra_stack.py
+        self.fargate_service.task_definition.task_role.add_to_principal_policy(
+            iam.PolicyStatement(
+                actions=["bedrock:InvokeModel"],
+                resources=["arn:aws:bedrock:us-east-1::foundation-model/amazon.titan-embed-text-v2:0"]
+            )
+        )
+
         # Allow the Fargate container security group to talk to the RDS database security group on port 5432
         self.db.connections.allow_from(
             self.fargate_service.service,

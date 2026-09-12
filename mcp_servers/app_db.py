@@ -6,8 +6,11 @@ from typing import List, Dict, Any
 import os
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import String, Boolean, JSON, select
+from sqlalchemy import String, Boolean, JSON, select, text
 from dotenv import load_dotenv
+
+import boto3
+from pgvector.sqlalchemy import Vector
 
 load_dotenv()
 
@@ -31,6 +34,20 @@ else:  # Fall back to local .env for local testing
 engine = create_async_engine(DATABASE_URL, echo=False)
 AsyncSessionLocal = async_sessionmaker(engine, expire_on_commit=False)
 
+# Initialize AWS Bedrock Client
+bedrock = boto3.client("bedrock-runtime", region_name="us-east-1")
+
+
+def generate_embedding(text_str: str) -> list[float]:
+    """Calls Amazon Titan to generate a 1024-dimension text embedding."""
+    response = bedrock.invoke_model(
+        body=json.dumps({"inputText": text_str}),
+        modelId="amazon.titan-embed-text-v2:0",
+        accept="application/json",
+        contentType="application/json"
+    )
+    return json.loads(response.get("body").read())["embedding"]
+
 
 # ---------------------------------------------------------------------------
 # 2. Object Relational Mapper (ORM) Schema
@@ -47,6 +64,8 @@ class CustomerRecord(Base):
     email: Mapped[str] = mapped_column(String, nullable=True)
     is_active: Mapped[bool] = mapped_column(Boolean)
     last_login: Mapped[str] = mapped_column(String, nullable=True)
+    # New Vector Column for 1024-dimensional Titan embeddings
+    embedding: Mapped[list[float]] = mapped_column(Vector(1024), nullable=True)
 
 
 class CanonicalProfile(Base):
@@ -62,6 +81,8 @@ class CanonicalProfile(Base):
 async def init_db():
     """Creates tables and seeds initial data for testing."""
     async with engine.begin() as conn:
+        # Crucial: Enable pgvector on the RDS instance before creating tables
+        await conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector;"))
         await conn.run_sync(Base.metadata.create_all)
 
     # Seed data so our previous queries still work
@@ -110,12 +131,14 @@ async def fetch_canonical_by_company(company_name: str) -> List[Dict[str, Any]]:
 async def search_app_db(query: str) -> List[Dict[str, Any]]:
     """Search PostgreSQL internal database records by company name or user email."""
     await init_db()
+    await init_db()query_vector = generate_embedding(query)
+
     async with AsyncSessionLocal() as session:
         # ILIKE performs a case-insensitive search in PostgreSQL
-        stmt = select(CustomerRecord).where(
-            CustomerRecord.company.ilike(f"%{query}%") |
-            CustomerRecord.email.ilike(f"%{query}%")
-        )
+        stmt = select(CustomerRecord).order_by(
+            CustomerRecord.embedding.cosine_distance(query_vector)
+        ).limit(5)
+
         result = await session.execute(stmt)
         records = result.scalars().all()
 
