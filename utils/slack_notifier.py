@@ -67,14 +67,14 @@ def send_discrepancy_alert(state: dict, thread_id: str, channel: str = "#new-cha
                     "text": {"type": "plain_text", "text": "✅ Approve & Persist"},
                     "style": "primary",
                     "action_id": "approve_resolution",
-                    "value": "approve",
+                    "value": str(thread_id)  # <--- CRITICAL: This passes the ID back to server.py
                 },
                 {
                     "type": "button",
                     "text": {"type": "plain_text", "text": "❌ Reject (Halt)"},
                     "style": "danger",
                     "action_id": "reject_resolution",
-                    "value": "reject",
+                    "value": str(thread_id)  # <--- CRITICAL: This passes the ID back to server.py
                 },
             ],
         }

@@ -120,7 +120,7 @@ async def get_canonical_record(company_name: str):
     }
 
 
-async def resume_graph(decision: str):
+async def resume_graph(decision: str, thread_id: str):
     """Background task to wake up LangGraph and resume execution."""
     # 1. Connect to the Async Postgres checkpointer
     async with AsyncPostgresSaver.from_conn_string(LANGGRAPH_DB_URL) as memory:
@@ -129,7 +129,7 @@ async def resume_graph(decision: str):
 
         # 2. Recompile the graph engine
         engine = graph_builder.compile(checkpointer=memory)
-        config = {"configurable": {"thread_id": "1"}}
+        config = {"configurable": {"thread_id": thread_id}}
 
         if decision in ["approve", "approve_resolution"]:
             print("\nWebhook received APPROVE. Resuming graph to persist data...")
