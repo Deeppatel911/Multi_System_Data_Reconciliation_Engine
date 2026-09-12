@@ -131,7 +131,7 @@ async def fetch_canonical_by_company(company_name: str) -> List[Dict[str, Any]]:
 async def search_app_db(query: str) -> List[Dict[str, Any]]:
     """Search PostgreSQL internal database records by company name or user email."""
     await init_db()
-    await init_db()query_vector = generate_embedding(query)
+    query_vector = generate_embedding(query)
 
     async with AsyncSessionLocal() as session:
         # ILIKE performs a case-insensitive search in PostgreSQL
