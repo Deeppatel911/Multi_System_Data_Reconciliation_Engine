@@ -165,16 +165,18 @@ async def slack_webhook(request: Request, background_tasks: BackgroundTasks):
     # Verify this is a button click action
     if payload.get("type") == "block_actions":
         action = payload["actions"][0]
+
+        # Action ID dictates what the user clicked (e.g., "approve_resolution")
         action_id = action.get("action_id")
 
-        # FIX: Use action_id as a fallback if value is missing from the payload
-        value = action.get("value") or action_id # This will be "approve" or "reject"
+        # Extract the thread_id from the button's payload value
+        thread_id = action.get("value", "1")
 
         user = payload.get("user", {}).get("username", "Unknown User")
-        print(f"\nIncoming Action: {user} clicked '{action_id}'")
+        print(f"\nIncoming Action: {user} clicked '{action_id}' for thread '{thread_id}'")
 
-        # Pass the decision to the LangGraph engine in the background
-        background_tasks.add_task(resume_graph, value)
+        # Pass BOTH the decision and the thread_id to the resume function
+        background_tasks.add_task(resume_graph, action_id, thread_id)
 
     # THE FIX: Return a strictly empty 200 OK so Slack doesn't try to parse a JSON body
     return Response(status_code=200) # {"status": "ok"}
