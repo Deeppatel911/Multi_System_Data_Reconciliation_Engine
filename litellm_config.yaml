@@ -1,17 +1,18 @@
 model_list:
-  # Tier 1: GPT-OSS on Groq (In case the specific Qwen model rate-limits first)
+  # Primary Model: Claude Sonnet 5 (Highest Priority)
   - model_name: mdm-resolver
     litellm_params:
-      model: groq/openai/gpt-oss-120b
-      api_key: os.environ/GROQ_API_KEY
+      model: bedrock/anthropic.claude-sonnet-5
+      aws_region_name: us-east-1
+      order: 1
 
-  # Tier 3: The Ultimate Safety Net (Kicks in when Groq hits its global 30 RPM limit)
+  # Fallback Model: Meta Llama 3.3 70B (Only triggers if order 1 fails)
   - model_name: mdm-resolver
     litellm_params:
-      model: openai/gpt-4o-mini
-      api_key: os.environ/OPENAI_API_KEY
+      model: bedrock/meta.llama3-3-70b-instruct-v1:0
+      aws_region_name: us-east-1
+      order: 2
 
 router_settings:
-  # Automatically try the next model in the list on failure
   num_retries: 2
   timeout: 30

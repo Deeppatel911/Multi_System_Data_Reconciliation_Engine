@@ -6,6 +6,8 @@ from aws_cdk import (
     aws_ecs as ecs,
     aws_ecs_patterns as ecs_patterns,
     aws_iam as iam,
+    aws_kms as kms,
+    aws_bedrock as bedrock,
     RemovalPolicy,
     CfnOutput
 )
@@ -52,7 +54,52 @@ class InfraStack(Stack):
         )
 
         # ==========================================
-        # 2. The Persistence Layer (AWS RDS)
+        # 2. Security: KMS & Bedrock Guardrails
+        # ==========================================
+        # KMS Key for Encrypting PostgreSQL at rest
+        self.db_kms_key = kms.Key(
+            self, "MdmDbKey",
+            enable_key_rotation=True,
+            description="KMS Key for MDM RDS Database Encryption",
+            removal_policy=RemovalPolicy.DESTROY
+        )
+
+        # AWS Bedrock Guardrail (Prompt Injection + Topic Denial)
+        self.guardrail = bedrock.CfnGuardrail(
+            self, "MdmGuardrail",
+            name="mdm-reconciliation-guardrail",
+            description="Blocks prompt injection and non-MDM topics.",
+            blocked_input_messaging="SECURITY ALERT: Input blocked by AWS Guardrails.",
+            blocked_outputs_messaging="SECURITY ALERT: Output blocked by AWS Guardrails.",
+            content_policy_config=bedrock.CfnGuardrail.ContentPolicyConfigProperty(
+                filters_config=[
+                    bedrock.CfnGuardrail.ContentFilterConfigProperty(
+                        type="PROMPT_ATTACK",
+                        input_strength="HIGH",
+                        output_strength="NONE"
+                    )
+                ]
+            ),
+            topic_policy_config=bedrock.CfnGuardrail.TopicPolicyConfigProperty(
+                topics_config=[
+                    bedrock.CfnGuardrail.TopicConfigProperty(
+                        name="Denied_Non_MDM_Topics",
+                        definition="Any conversation regarding programming help, casual chat, financial advice, or topics outside of database reconciliation.",
+                        examples=["Write python code for me.", "How do I invest?", "Tell me a joke."],
+                        type="DENY"
+                    )
+                ]
+            )
+        )
+
+        self.guardrail_version = bedrock.CfnGuardrailVersion(
+            self, "MdmGuardrailVersion",
+            guardrail_identifier=self.guardrail.attr_guardrail_id,
+            description="Production Guardrail v1"
+        )
+
+        # ==========================================
+        # 3. The Persistence Layer (AWS RDS)
         # ==========================================
         self.db = rds.DatabaseInstance(
             self, "MdmPostgres",
@@ -71,6 +118,8 @@ class InfraStack(Stack):
             database_name="mdm_db",
             # AWS Secrets Manager will automatically generate and rotate this password
             credentials=rds.Credentials.from_generated_secret("mdm_admin"),
+            storage_encrypted=True,
+            storage_encryption_key=self.db_kms_key,
             # For this dev project, destroy the DB if we delete the stack
             removal_policy=RemovalPolicy.DESTROY,
         )
@@ -82,7 +131,7 @@ class InfraStack(Stack):
         )
 
         # ==========================================
-        # 3. The Image Registry (AWS ECR)
+        # 4. The Image Registry (AWS ECR)
         # ==========================================
         self.ecr_repo = ecr.Repository(
             self, "MdmApiRepository",
@@ -100,7 +149,7 @@ class InfraStack(Stack):
         )
 
         # ==========================================
-        # 4. Compute & Load Balancer (ECS Fargate + ALB)
+        # 5. Compute & Load Balancer (ECS Fargate + ALB)
         # ==========================================
         self.ecs_cluster = ecs.Cluster(
             self, "MdmEcsCluster",
@@ -115,7 +164,7 @@ class InfraStack(Stack):
             cpu=512,  # INCREASED: 0.5 vCPU
             memory_limit_mib=2048,  # INCREASED: 2 GB RAM
             desired_count=1,
-            enable_execute_command=True, # CRITICAL: Enables ECS Exec / SSM tunneling
+            enable_execute_command=True,  # CRITICAL: Enables ECS Exec / SSM tunneling
             task_image_options=ecs_patterns.ApplicationLoadBalancedTaskImageOptions(
                 image=ecs.ContainerImage.from_ecr_repository(self.ecr_repo, tag="latest"),
                 container_port=8000,
@@ -127,13 +176,15 @@ class InfraStack(Stack):
                     "LITELLM_BASE_URL": "http://127.0.0.1:4000",
                     "LITELLM_API_KEY": "sk-litellm-local",
 
-                    "OPENAI_API_KEY": os.environ.get("OPENAI_API_KEY", ""),
-                    "GROQ_API_KEY": os.environ.get("GROQ_API_KEY", ""),
                     "SLACK_BOT_TOKEN": os.environ.get("SLACK_BOT_TOKEN", ""),
                     "LANGFUSE_SECRET_KEY": os.environ.get("LANGFUSE_SECRET_KEY", ""),
                     "LANGFUSE_PUBLIC_KEY": os.environ.get("LANGFUSE_PUBLIC_KEY", ""),
                     "LANGFUSE_BASE_URL": os.environ.get("LANGFUSE_HOST", ""),
                     "LANGFUSE_HOST": os.environ.get("LANGFUSE_HOST", ""),
+
+                    # Inject Guardrail info into container
+                    "GUARDRAIL_ID": self.guardrail.attr_guardrail_id,
+                    "GUARDRAIL_VERSION": self.guardrail_version.attr_version
                 },
                 secrets={
                     # Securely inject the auto-generated RDS credentials into the container
@@ -155,10 +206,18 @@ class InfraStack(Stack):
         )
 
         # Add this underneath your existing SSM managed policy in infra_stack.py
+        # Grant Bedrock Model Invocation AND Guardrail Execution
         self.fargate_service.task_definition.task_role.add_to_principal_policy(
             iam.PolicyStatement(
-                actions=["bedrock:InvokeModel"],
-                resources=["arn:aws:bedrock:us-east-1::foundation-model/amazon.titan-embed-text-v2:0"]
+                actions=["bedrock:InvokeModel",
+                         "bedrock:ApplyGuardrail"
+                         ],
+                resources=[
+                    "arn:aws:bedrock:us-east-1::foundation-model/amazon.titan-embed-text-v2:0",
+                    "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude*",
+                    "arn:aws:bedrock:us-east-1::foundation-model/meta.llama3*",
+                    f"arn:aws:bedrock:us-east-1:{self.account}:guardrail/{self.guardrail.attr_guardrail_id}"
+                    ]
             )
         )
 
