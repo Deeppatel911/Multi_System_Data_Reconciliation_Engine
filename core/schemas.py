@@ -35,6 +35,20 @@ class UnifiedCustomerProfile(BaseModel):
     confidence_metrics: ConfidenceScore
     discrepancies: List[DiscrepancyReport] = Field(default_factory=list, description="List of unresolved discrepancies.")
 
+    # Automatically unwrap Bedrock's typed parameter dictionary wrappers
+    @model_validator(mode='before')
+    @classmethod
+    def unwrap_bedrock_parameters(cls, values):
+        if isinstance(values, dict):
+            unwrapped = {}
+            for k, v in values.items():
+                if isinstance(v, dict) and 'value' in v:
+                    unwrapped[k] = v['value']
+                else:
+                    unwrapped[k] = v
+            return unwrapped
+        return values
+
     # Automatically parse stringified JSON if LLM returns text instead of dict/list
     @field_validator('confidence_metrics', mode='before')
     @classmethod
