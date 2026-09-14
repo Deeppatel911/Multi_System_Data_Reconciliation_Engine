@@ -13,6 +13,18 @@ model_list:
       aws_region_name: us-east-1
       order: 2
 
+  # LLM-as-a-Judge (Cross-Family Evaluator)
+  - model_name: mdm-judge
+    litellm_params:
+      model: bedrock/mistral.mistral-large-2402-v1:0
+      aws_region_name: us-east-1
+
+  # Cross-Family LLM-as-a-Judge: Mistral Large 3
+  - model_name: mdm-judge
+    litellm_params:
+      model: bedrock/mistral.mistral-large-3-675b-instruct
+      aws_region_name: us-east-1
+
 router_settings:
   num_retries: 2
   timeout: 30

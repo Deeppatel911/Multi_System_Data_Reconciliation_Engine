@@ -32,7 +32,9 @@ class EvalRubric(BaseModel):
 
 
 # We use GPT-4o with temperature 0 for strict, deterministic grading
-judge_llm = ChatOpenAI(model="gpt-4o", temperature=0).with_structured_output(EvalRubric)
+judge_llm = ChatOpenAI(base_url=os.getenv("LITELLM_BASE_URL", "http://localhost:4000"),
+                       api_key=os.getenv("LITELLM_API_KEY", "sk-litellm-local"), model="gpt-4o",
+                       temperature=0).with_structured_output(EvalRubric)
 
 JUDGE_PROMPT = ChatPromptTemplate.from_messages([
     ("system",
