@@ -213,10 +213,14 @@ class InfraStack(Stack):
                          "bedrock:ApplyGuardrail"
                          ],
                 resources=[
-                    "arn:aws:bedrock:us-east-1::foundation-model/amazon.titan-embed-text-v2:0",
-                    "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude*",
-                    "arn:aws:bedrock:us-east-1::foundation-model/meta.llama3*",
-                    f"arn:aws:bedrock:us-east-1:{self.account}:guardrail/{self.guardrail.attr_guardrail_id}"
+                    "arn:aws:bedrock:*::foundation-model/amazon.titan-embed-text-v2:0",
+                    "arn:aws:bedrock:*::foundation-model/anthropic.claude*",
+                    "arn:aws:bedrock:*::foundation-model/meta.llama3*",
+                    "arn:aws:bedrock:*::foundation-model/mistral*",
+
+                    # Guardrails and Inference Profiles are bound to the account/region where they are created
+                    f"arn:aws:bedrock:us-east-1:{self.account}:guardrail/{self.guardrail.attr_guardrail_id}",
+                    f"arn:aws:bedrock:us-east-1:{self.account}:inference-profile/*"
                     ]
             )
         )
