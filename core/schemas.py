@@ -1,5 +1,6 @@
-from pydantic import BaseModel, Field
-from typing import Dict, List, Optional, Any
+from pydantic import BaseModel, Field, field_validator
+from typing import List, Optional
+import json
 
 
 class ConfidenceScore(BaseModel):
@@ -34,4 +35,17 @@ class UnifiedCustomerProfile(BaseModel):
     confidence_metrics: ConfidenceScore
     discrepancies: List[DiscrepancyReport] = Field(default_factory=list, description="List of unresolved discrepancies.")
 
+    # Automatically parse stringified JSON if LLM returns text instead of dict/list
+    @field_validator('confidence_metrics', mode='before')
+    @classmethod
+    def parse_confidence_metrics(cls, v):
+        if isinstance(v, str):
+            return json.loads(v)
+        return v
 
+    @field_validator('discrepancies', mode='before')
+    @classmethod
+    def parse_discrepancies(cls, v):
+        if isinstance(v, str):
+            return json.loads(v)
+        return v
