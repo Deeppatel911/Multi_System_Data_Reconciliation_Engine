@@ -9,15 +9,9 @@ model_list:
   # Fallback Model: Meta Llama 3.3 70B (Only triggers if order 1 fails)
   - model_name: mdm-resolver
     litellm_params:
-      model: bedrock/meta.llama3-3-70b-instruct-v1:0
+      model: bedrock/us.meta.llama3-3-70b-instruct-v1:0
       aws_region_name: us-east-1
       order: 2
-
-  # LLM-as-a-Judge (Cross-Family Evaluator)
-  - model_name: mdm-judge
-    litellm_params:
-      model: bedrock/mistral.mistral-large-2402-v1:0
-      aws_region_name: us-east-1
 
   # Cross-Family LLM-as-a-Judge: Mistral Large 3
   - model_name: mdm-judge
