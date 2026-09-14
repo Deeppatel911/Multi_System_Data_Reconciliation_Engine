@@ -22,3 +22,6 @@ model_list:
 router_settings:
   num_retries: 2
   timeout: 30
+
+litellm_settings:
+  drop_params: true
