@@ -8,6 +8,7 @@ from aws_cdk import (
     aws_iam as iam,
     aws_kms as kms,
     aws_bedrock as bedrock,
+    aws_secretsmanager as sm,
     RemovalPolicy,
     CfnOutput
 )
@@ -148,6 +149,11 @@ class InfraStack(Stack):
             value=self.ecr_repo.repository_uri
         )
 
+        # Import the manually created JSON secret
+        self.app_secrets = sm.Secret.from_secret_name_v2(
+            self, "MdmApiKeys", "mdm/api-keys"
+        )
+
         # ==========================================
         # 5. Compute & Load Balancer (ECS Fargate + ALB)
         # ==========================================
@@ -168,28 +174,26 @@ class InfraStack(Stack):
             task_image_options=ecs_patterns.ApplicationLoadBalancedTaskImageOptions(
                 image=ecs.ContainerImage.from_ecr_repository(self.ecr_repo, tag="latest"),
                 container_port=8000,
+                # ONLY safe, non-sensitive config goes in 'environment'
                 environment={
                     "DATABASE_HOST": self.db.db_instance_endpoint_address,
                     "DATABASE_PORT": "5432",
                     "DATABASE_NAME": "mdm_db",
-
                     "LITELLM_BASE_URL": "http://127.0.0.1:4000",
-                    "LITELLM_API_KEY": "sk-litellm-local",
-
-                    "SLACK_BOT_TOKEN": os.environ.get("SLACK_BOT_TOKEN", ""),
-                    "LANGFUSE_SECRET_KEY": os.environ.get("LANGFUSE_SECRET_KEY", ""),
-                    "LANGFUSE_PUBLIC_KEY": os.environ.get("LANGFUSE_PUBLIC_KEY", ""),
-                    "LANGFUSE_BASE_URL": os.environ.get("LANGFUSE_HOST", ""),
-                    "LANGFUSE_HOST": os.environ.get("LANGFUSE_HOST", ""),
-
-                    # Inject Guardrail info into container
                     "GUARDRAIL_ID": self.guardrail.attr_guardrail_id,
                     "GUARDRAIL_VERSION": self.guardrail_version.attr_version
                 },
+
+                # Sensitive values pulled securely at runtime
                 secrets={
-                    # Securely inject the auto-generated RDS credentials into the container
                     "DATABASE_USER": ecs.Secret.from_secrets_manager(self.db.secret, "username"),
-                    "DATABASE_PASSWORD": ecs.Secret.from_secrets_manager(self.db.secret, "password")
+                    "DATABASE_PASSWORD": ecs.Secret.from_secrets_manager(self.db.secret, "password"),
+                    "LITELLM_API_KEY": ecs.Secret.from_secrets_manager(self.app_secrets, "LITELLM_API_KEY"),
+                    "SLACK_BOT_TOKEN": ecs.Secret.from_secrets_manager(self.app_secrets, "SLACK_BOT_TOKEN"),
+                    "LANGFUSE_SECRET_KEY": ecs.Secret.from_secrets_manager(self.app_secrets, "LANGFUSE_SECRET_KEY"),
+                    "LANGFUSE_PUBLIC_KEY": ecs.Secret.from_secrets_manager(self.app_secrets, "LANGFUSE_PUBLIC_KEY"),
+                    "LANGFUSE_HOST": ecs.Secret.from_secrets_manager(self.app_secrets, "LANGFUSE_HOST"),
+                    "LANGFUSE_BASE_URL": ecs.Secret.from_secrets_manager(self.app_secrets, "LANGFUSE_BASE_URL")
                 }
             ),
             public_load_balancer=True,
