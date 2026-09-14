@@ -22,4 +22,4 @@ structured_resolver_llm = ChatOpenAI(
 
 # Force the model to emit a payload that validates directly against the
 # UnifiedCustomerProfile schema (field names, types, and nesting included).
-structured_resolver_llm = structured_resolver_llm.with_structured_output(UnifiedCustomerProfile)
+structured_resolver_llm = structured_resolver_llm.with_structured_output(UnifiedCustomerProfile, method="function_calling")

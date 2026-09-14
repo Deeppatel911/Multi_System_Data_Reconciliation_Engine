@@ -21,7 +21,7 @@ with open(DATASET_PATH, "r") as f:
 
 
 # ---------------------------------------------------------
-# 2. Define the GPT-4o Judge
+# 2. Define the Judge
 # ---------------------------------------------------------
 class EvalRubric(BaseModel):
     hallucinated: bool = Field(
@@ -31,10 +31,10 @@ class EvalRubric(BaseModel):
     judge_reasoning: str = Field(description="A 1-sentence explanation of the grade.")
 
 
-# We use GPT-4o with temperature 0 for strict, deterministic grading
+# We use temperature 0 for strict, deterministic grading
 judge_llm = ChatOpenAI(base_url=os.getenv("LITELLM_BASE_URL", "http://localhost:4000"),
                        api_key=os.getenv("LITELLM_API_KEY", "sk-litellm-local"), model="mdm-judge",
-                       temperature=0).with_structured_output(EvalRubric)
+                       temperature=0).with_structured_output(EvalRubric, method="function_calling")
 
 JUDGE_PROMPT = ChatPromptTemplate.from_messages([
     ("system",
