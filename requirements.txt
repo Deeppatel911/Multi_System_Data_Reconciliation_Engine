@@ -5,7 +5,7 @@ langchain
 langchain-openai
 langgraph
 langgraph-checkpoint-postgres
-langfuse
+langfuse>=3.0.0,<4.0.0
 fastmcp[server]
 pydantic
 sqlalchemy
