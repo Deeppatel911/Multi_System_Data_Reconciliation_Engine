@@ -12,6 +12,8 @@ from dotenv import load_dotenv
 import boto3
 from pgvector.sqlalchemy import Vector
 
+import asyncio
+
 load_dotenv()
 
 mcp = FastMCP("Internal_App_DB")
@@ -49,6 +51,15 @@ def generate_embedding(text_str: str) -> list[float]:
     return json.loads(response.get("body").read())["embedding"]
 
 
+def build_record_text(company: str, email: str | None) -> str:
+    """Builds the single canonical string used to represent a record in embedding space."""
+    parts = [company or ""]
+    if email:
+        parts.append(email)
+        parts.append(email.split("@")[-1])
+    return " | ".join(part for part in parts if part)
+
+
 # ---------------------------------------------------------------------------
 # 2. Object Relational Mapper (ORM) Schema
 # ---------------------------------------------------------------------------
@@ -78,6 +89,35 @@ class CanonicalProfile(Base):
 # ---------------------------------------------------------------------------
 # 3. Database Initialization & Seeding
 # ---------------------------------------------------------------------------
+SEED_RECORDS = [
+    {"user_id": "usr_98124", "company": "Acme", "email": "admin@acme.io",
+     "is_active": False, "last_login": "2026-07-10"},
+    {"user_id": "usr_77211", "company": "Globex", "email": "admin@globex.io",
+     "is_active": True, "last_login": "2026-08-16"},
+]
+
+
+async def backfill_missing_embeddings() -> int:
+    """Generates embeddings for any row missing one. Returns how many rows were updated."""
+    async with AsyncSessionLocal() as session:
+        stmt = select(CustomerRecord).where(CustomerRecord.embedding.is_(None))
+        result = await session.execute(stmt)
+        rows = result.scalars().all()
+
+        if not rows:
+            return 0
+
+        for record in rows:
+            record.embedding = await asyncio.to_thread(
+                generate_embedding,
+                build_record_text(record.company, record.email),
+            )
+
+        await session.commit()
+        print(f"Backfilled embeddings for {len(rows)} customer record(s).")
+        return len(rows)
+
+
 async def init_db():
     """Creates tables and seeds initial data for testing."""
     async with engine.begin() as conn:
@@ -89,13 +129,16 @@ async def init_db():
     async with AsyncSessionLocal() as session:
         result = await session.execute(select(CustomerRecord))
         if not result.scalars().first():
-            session.add_all([
-                CustomerRecord(user_id="usr_98124", company="Acme", email="admin@acme.io", is_active=False,
-                               last_login="2026-07-10"),
-                CustomerRecord(user_id="usr_77211", company="Globex", email="admin@globex.io", is_active=True,
-                               last_login="2026-08-16")
-            ])
+            for row in SEED_RECORDS:
+                vector = await asyncio.to_thread(
+                    generate_embedding,
+                    build_record_text(row["company"], row["email"]),
+                )
+                session.add(CustomerRecord(**row, embedding=vector))
             await session.commit()
+
+    # Any row that predates this change (or was inserted elsewhere) gets a vector here
+    await backfill_missing_embeddings()
 
 
 async def fetch_all_canonical_records() -> List[Dict[str, Any]]:
@@ -131,13 +174,17 @@ async def fetch_canonical_by_company(company_name: str) -> List[Dict[str, Any]]:
 async def search_app_db(query: str) -> List[Dict[str, Any]]:
     """Search PostgreSQL internal database records by company name or user email."""
     await init_db()
-    query_vector = generate_embedding(query)
+    # Titan is a blocking boto3 call; off-load it so the event loop stays free
+    query_vector = await asyncio.to_thread(generate_embedding, query)
 
     async with AsyncSessionLocal() as session:
         # ILIKE performs a case-insensitive search in PostgreSQL
-        stmt = select(CustomerRecord).order_by(
-            CustomerRecord.embedding.cosine_distance(query_vector)
-        ).limit(5)
+        stmt = (
+            select(CustomerRecord)
+            .where(CustomerRecord.embedding.is_not(None))
+            .order_by(CustomerRecord.embedding.cosine_distance(query_vector))
+            .limit(5)
+        )
 
         result = await session.execute(stmt)
         records = result.scalars().all()
