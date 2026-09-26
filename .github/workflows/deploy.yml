@@ -4,6 +4,14 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
+
+# Cancel superseded PR runs to avoid paying for stale evals; never cancel a deploy on main
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 # Required to exchange a GitHub token for an AWS IAM role token (OIDC)
 permissions:
@@ -58,6 +66,8 @@ jobs:
   deploy:
     name: Build and Deploy to ECS
     needs: evaluate
+      # Only deploy after code has actually landed on main, never from a pull request
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
