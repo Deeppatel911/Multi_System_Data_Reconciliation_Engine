@@ -9,12 +9,23 @@ from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
 from pydantic import BaseModel
 from utils.slack_notifier import send_discrepancy_alert
 
-from mcp_servers.app_db import fetch_canonical_by_company, fetch_all_canonical_records
+from mcp_servers.app_db import fetch_canonical_by_company, fetch_all_canonical_records, init_db
 
 import time
 
+from contextlib import asynccontextmanager
+
 load_dotenv()
-app = FastAPI()
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Seed and embed the app database before the first request instead of during it
+    await init_db()
+    yield
+
+
+app = FastAPI(lifespan=lifespan)
 
 
 @app.middleware("http")
