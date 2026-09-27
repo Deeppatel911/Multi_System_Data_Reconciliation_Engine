@@ -116,6 +116,9 @@ async def backfill_missing_embeddings() -> int:
         print(f"Backfilled embeddings for {len(rows)} customer record(s).")
         return len(rows)
 
+# Set once initialization succeeds, so later calls return immediately
+_db_ready = False
+
 
 async def seed_missing_records() -> int:
     """Inserts seed users that aren't in the table yet. Returns how many were added."""
@@ -134,7 +137,11 @@ async def seed_missing_records() -> int:
 
 
 async def init_db():
-    """Creates tables, seeds any missing users, and embeds rows that lack a vector."""
+    """Creates tables, seeds any missing users, and embeds rows that lack a vector.Runs once per process."""
+    global _db_ready
+    if _db_ready:
+        return
+
     async with engine.begin() as conn:
         # Crucial: Enable pgvector on the RDS instance before creating tables
         await conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector;"))
@@ -143,6 +150,7 @@ async def init_db():
     await seed_missing_records()
     # New rows are inserted without vectors; backfill is the one place embeddings are generated
     await backfill_missing_embeddings()
+    _db_ready = True
 
 
 async def fetch_all_canonical_records() -> List[Dict[str, Any]]:
