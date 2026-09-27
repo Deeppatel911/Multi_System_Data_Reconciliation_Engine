@@ -1,0 +1,268 @@
+[
+  {
+    "user_id": "usr_1001",
+    "company": "Stark Logistics",
+    "email": "dev@starklogistics.com",
+    "is_active": true,
+    "last_login": "2026-07-07"
+  },
+  {
+    "user_id": "usr_1002",
+    "company": "Aperture",
+    "email": "founder@aperture.com",
+    "is_active": true,
+    "last_login": "2026-05-22"
+  },
+  {
+    "user_id": "usr_1003",
+    "company": "Tyrell",
+    "email": "admin@tyrell.com",
+    "is_active": true,
+    "last_login": "2026-02-03"
+  },
+  {
+    "user_id": "usr_1004",
+    "company": "Tyrell Capital",
+    "email": "founder@tyrellcapital.com",
+    "is_active": true,
+    "last_login": "2026-08-13"
+  },
+  {
+    "user_id": "usr_1005",
+    "company": "Oscorp",
+    "email": "ops@oscorp.io",
+    "is_active": true,
+    "last_login": "2026-02-22"
+  },
+  {
+    "user_id": "usr_1006",
+    "company": "Globex",
+    "email": "founder@globex.com",
+    "is_active": true,
+    "last_login": "2026-05-22"
+  },
+  {
+    "user_id": "usr_1007",
+    "company": "Cyberdyne UK",
+    "email": "founder@cyberdyne.co.uk",
+    "is_active": true,
+    "last_login": "2026-07-03"
+  },
+  {
+    "user_id": "usr_1008",
+    "company": "Wayne UK",
+    "email": "admin@wayne.co.uk",
+    "is_active": false,
+    "last_login": "2026-01-18"
+  },
+  {
+    "user_id": "usr_1009",
+    "company": "Tyrell Capital",
+    "email": "dev@tyrellcapital.com",
+    "is_active": true,
+    "last_login": "2026-01-30"
+  },
+  {
+    "user_id": "usr_1010",
+    "company": "Tyrell",
+    "email": "founder@tyrell.com",
+    "is_active": true,
+    "last_login": "2026-03-04"
+  },
+  {
+    "user_id": "usr_1011",
+    "company": "Initech",
+    "email": "admin@initech.io",
+    "is_active": true,
+    "last_login": "2026-08-20"
+  },
+  {
+    "user_id": "usr_1012",
+    "company": "Tyrell",
+    "email": "dev@tyrell.com",
+    "is_active": false,
+    "last_login": "2026-08-14"
+  },
+  {
+    "user_id": "usr_1013",
+    "company": "Stark Logistics",
+    "email": "ops@starklogistics.com",
+    "is_active": false,
+    "last_login": "2026-05-23"
+  },
+  {
+    "user_id": "usr_1014",
+    "company": "Initech Capital",
+    "email": "ops@initechcapital.io",
+    "is_active": true,
+    "last_login": "2026-05-05"
+  },
+  {
+    "user_id": "usr_1015",
+    "company": "Vandelay",
+    "email": "admin@vandelay.io",
+    "is_active": true,
+    "last_login": "2026-03-28"
+  },
+  {
+    "user_id": "usr_1016",
+    "company": "Vandelay",
+    "email": "dev@vandelay.io",
+    "is_active": false,
+    "last_login": "2026-01-28"
+  },
+  {
+    "user_id": "usr_1017",
+    "company": "Dunder Mifflin",
+    "email": "dev@dundermifflin.com",
+    "is_active": false,
+    "last_login": "2026-07-11"
+  },
+  {
+    "user_id": "usr_1018",
+    "company": "Cyberdyne Logistics",
+    "email": "founder@cyberdynelogistics.com",
+    "is_active": false,
+    "last_login": "2026-08-28"
+  },
+  {
+    "user_id": "usr_1019",
+    "company": "Wonka",
+    "email": "dev@wonka.io",
+    "is_active": true,
+    "last_login": "2026-04-29"
+  },
+  {
+    "user_id": "usr_1020",
+    "company": "Oscorp UK",
+    "email": "admin@oscorp.co.uk",
+    "is_active": true,
+    "last_login": "2026-04-19"
+  },
+  {
+    "user_id": "usr_1021",
+    "company": "Stark UK",
+    "email": "admin@stark.co.uk",
+    "is_active": true,
+    "last_login": "2026-05-19"
+  },
+  {
+    "user_id": "usr_1022",
+    "company": "Stark Logistics",
+    "email": "founder@starklogistics.com",
+    "is_active": true,
+    "last_login": "2026-05-05"
+  },
+  {
+    "user_id": "usr_1023",
+    "company": "Acme",
+    "email": "dev@acme.com",
+    "is_active": false,
+    "last_login": "2026-08-26"
+  },
+  {
+    "user_id": "usr_1024",
+    "company": "Stark",
+    "email": "dev@stark.io",
+    "is_active": false,
+    "last_login": "2026-02-12"
+  },
+  {
+    "user_id": "usr_1025",
+    "company": "Aperture",
+    "email": "admin@aperture.com",
+    "is_active": true,
+    "last_login": "2026-05-24"
+  },
+  {
+    "user_id": "usr_1026",
+    "company": "Acme UK",
+    "email": "founder@acme.co.uk",
+    "is_active": false,
+    "last_login": "2026-06-16"
+  },
+  {
+    "user_id": "usr_1027",
+    "company": "Hooli",
+    "email": "ops@hooli.com",
+    "is_active": true,
+    "last_login": "2026-04-19"
+  },
+  {
+    "user_id": "usr_1028",
+    "company": "Pied Piper",
+    "email": "admin@piedpiper.com",
+    "is_active": false,
+    "last_login": "2026-02-23"
+  },
+  {
+    "user_id": "usr_1029",
+    "company": "Wayne",
+    "email": "dev@wayne.com",
+    "is_active": true,
+    "last_login": "2026-08-07"
+  },
+  {
+    "user_id": "usr_1030",
+    "company": "Tyrell UK",
+    "email": "dev@tyrell.co.uk",
+    "is_active": true,
+    "last_login": "2026-01-03"
+  },
+  {
+    "user_id": "usr_1031",
+    "company": "Wonka Systems",
+    "email": "admin@wonkasystems.io",
+    "is_active": false,
+    "last_login": "2026-08-26"
+  },
+  {
+    "user_id": "usr_1032",
+    "company": "Hooli",
+    "email": "admin@hooli.com",
+    "is_active": true,
+    "last_login": "2026-06-18"
+  },
+  {
+    "user_id": "usr_1033",
+    "company": "Aperture Energy",
+    "email": "founder@apertureenergy.io",
+    "is_active": true,
+    "last_login": "2026-02-07"
+  },
+  {
+    "user_id": "usr_1034",
+    "company": "Cyberdyne",
+    "email": "ops@cyberdyne.io",
+    "is_active": true,
+    "last_login": "2026-01-11"
+  },
+  {
+    "user_id": "usr_1035",
+    "company": "Cyberdyne UK",
+    "email": "ops@cyberdyne.co.uk",
+    "is_active": true,
+    "last_login": "2026-03-09"
+  },
+  {
+    "user_id": "usr_1036",
+    "company": "Tyrell UK",
+    "email": "founder@tyrell.co.uk",
+    "is_active": false,
+    "last_login": "2026-07-26"
+  },
+  {
+    "user_id": "usr_1037",
+    "company": "Hooli",
+    "email": "dev@hooli.com",
+    "is_active": false,
+    "last_login": "2026-02-18"
+  },
+  {
+    "user_id": "usr_1038",
+    "company": "Acme UK",
+    "email": "ops@acme.co.uk",
+    "is_active": true,
+    "last_login": "2026-08-19"
+  }
+]
