@@ -1,0 +1,134 @@
+[
+  {
+    "stripe_id": "cus_1001",
+    "legal_name": "Dunder Mifflin LLC",
+    "billing_email": "accounts@dundermifflin.com",
+    "monthly_recurring_revenue": 200
+  },
+  {
+    "stripe_id": "cus_1002",
+    "legal_name": "Hooli Corporation",
+    "billing_email": "finance@hooli.com",
+    "monthly_recurring_revenue": 12000
+  },
+  {
+    "stripe_id": "cus_1003",
+    "legal_name": "Tyrell Inc.",
+    "billing_email": "billing@tyrell.com",
+    "monthly_recurring_revenue": 5000
+  },
+  {
+    "stripe_id": "cus_1004",
+    "legal_name": "Globex LLC",
+    "billing_email": "finance@globex.com",
+    "monthly_recurring_revenue": 500
+  },
+  {
+    "stripe_id": "cus_1005",
+    "legal_name": "Oscorp Corporation",
+    "billing_email": "accounts@oscorp.io",
+    "monthly_recurring_revenue": 500
+  },
+  {
+    "stripe_id": "cus_1006",
+    "legal_name": "Wayne Corporation",
+    "billing_email": "billing@wayne.com",
+    "monthly_recurring_revenue": 200
+  },
+  {
+    "stripe_id": "cus_1007",
+    "legal_name": "Pied Piper Inc.",
+    "billing_email": "finance@piedpiper.com",
+    "monthly_recurring_revenue": 1200
+  },
+  {
+    "stripe_id": "cus_1008",
+    "legal_name": "Tyrell UK PLC",
+    "billing_email": "finance@tyrell.co.uk",
+    "monthly_recurring_revenue": 2500
+  },
+  {
+    "stripe_id": "cus_1009",
+    "legal_name": "Cyberdyne UK Ltd",
+    "billing_email": "billing@cyberdyne.co.uk",
+    "monthly_recurring_revenue": 12000
+  },
+  {
+    "stripe_id": "cus_1010",
+    "legal_name": "Aperture Energy Corporation",
+    "billing_email": "finance@apertureenergy.io",
+    "monthly_recurring_revenue": 5000
+  },
+  {
+    "stripe_id": "cus_1011",
+    "legal_name": "Oscorp UK Ltd",
+    "billing_email": "billing@oscorp.co.uk",
+    "monthly_recurring_revenue": 5000
+  },
+  {
+    "stripe_id": "cus_1012",
+    "legal_name": "Aperture Inc.",
+    "billing_email": "finance@aperture.com",
+    "monthly_recurring_revenue": 1200
+  },
+  {
+    "stripe_id": "cus_1013",
+    "legal_name": "Wonka LLC",
+    "billing_email": "finance@wonka.io",
+    "monthly_recurring_revenue": 5000
+  },
+  {
+    "stripe_id": "cus_1014",
+    "legal_name": "Vandelay Inc.",
+    "billing_email": "accounts@vandelay.io",
+    "monthly_recurring_revenue": 200
+  },
+  {
+    "stripe_id": "cus_1015",
+    "legal_name": "Aperture UK Ltd",
+    "billing_email": "finance@aperture.co.uk",
+    "monthly_recurring_revenue": 200
+  },
+  {
+    "stripe_id": "cus_1016",
+    "legal_name": "Initech Inc.",
+    "billing_email": "finance@initech.io",
+    "monthly_recurring_revenue": 200
+  },
+  {
+    "stripe_id": "cus_1017",
+    "legal_name": "Stark Logistics Corporation",
+    "billing_email": "billing@starklogistics.com",
+    "monthly_recurring_revenue": 1200
+  },
+  {
+    "stripe_id": "cus_1018",
+    "legal_name": "Cyberdyne Inc.",
+    "billing_email": "accounts@cyberdyne.io",
+    "monthly_recurring_revenue": 500
+  },
+  {
+    "stripe_id": "cus_1019",
+    "legal_name": "Cyberdyne Logistics Corporation",
+    "billing_email": "accounts@cyberdynelogistics.com",
+    "monthly_recurring_revenue": 12000
+  },
+  {
+    "stripe_id": "cus_1020",
+    "legal_name": "Wonka Systems Inc.",
+    "billing_email": "billing@wonkasystems.io",
+    "monthly_recurring_revenue": 5000
+  },
+  {
+    "stripe_id": "cus_1021",
+    "legal_name": "Acme Inc.",
+    "billing_email": "billing@acme.com",
+    "monthly_recurring_revenue": 5000
+  },
+  {
+    "stripe_id": "cus_1022",
+    "legal_name": "Stark LLC",
+    "billing_email": "billing@stark.io",
+    "monthly_recurring_revenue": 2500
+  }
+]

@@ -1,0 +1,177 @@
+[
+  {
+    "crm_id": "sf_1001",
+    "company_name": "Cyberdyne Inc.",
+    "website": "https://www.cyberdyne.io",
+    "tier": "Enterprise",
+    "primary_contact": "admin@cyberdyne.io"
+  },
+  {
+    "crm_id": "sf_1002",
+    "company_name": "Wonka Systems Corporation",
+    "website": "wonkasystems.io",
+    "tier": "Enterprise",
+    "primary_contact": "admin@wonkasystems.io"
+  },
+  {
+    "crm_id": "sf_1003",
+    "company_name": "Tyrell UK PLC",
+    "website": "www.tyrell.co.uk",
+    "tier": "Mid-Market",
+    "primary_contact": "admin@tyrell.co.uk"
+  },
+  {
+    "crm_id": "sf_1004",
+    "company_name": "Cyberdyne Logistics Corporation",
+    "website": "www.cyberdynelogistics.com",
+    "tier": "Enterprise",
+    "primary_contact": "admin@cyberdynelogistics.com"
+  },
+  {
+    "crm_id": "sf_1005",
+    "company_name": "Initech Inc.",
+    "website": "initech.io",
+    "tier": "Startup",
+    "primary_contact": "admin@initech.io"
+  },
+  {
+    "crm_id": "sf_1006",
+    "company_name": "Stark LLC",
+    "website": "stark.io",
+    "tier": "Enterprise",
+    "primary_contact": "admin@stark.io"
+  },
+  {
+    "crm_id": "sf_1007",
+    "company_name": "Tyrell Inc.",
+    "website": "tyrell.com",
+    "tier": "Enterprise",
+    "primary_contact": "admin@tyrell.com"
+  },
+  {
+    "crm_id": "sf_1008",
+    "company_name": "Cyberdyne UK Ltd",
+    "website": "https://www.cyberdyne.co.uk",
+    "tier": "Enterprise",
+    "primary_contact": "admin@cyberdyne.co.uk"
+  },
+  {
+    "crm_id": "sf_1009",
+    "company_name": "Oscorp Corporation",
+    "website": "oscorp.io",
+    "tier": "Startup",
+    "primary_contact": "admin@oscorp.io"
+  },
+  {
+    "crm_id": "sf_1010",
+    "company_name": "Vandelay Inc.",
+    "website": "www.vandelay.io",
+    "tier": "Mid-Market",
+    "primary_contact": "admin@vandelay.io"
+  },
+  {
+    "crm_id": "sf_1011",
+    "company_name": "Acme UK PLC",
+    "website": "https://www.acme.co.uk",
+    "tier": "Startup",
+    "primary_contact": "admin@acme.co.uk"
+  },
+  {
+    "crm_id": "sf_1012",
+    "company_name": "Stark UK Ltd",
+    "website": "stark.co.uk",
+    "tier": "Enterprise",
+    "primary_contact": "admin@stark.co.uk"
+  },
+  {
+    "crm_id": "sf_1013",
+    "company_name": "Wayne Corporation",
+    "website": "wayne.com",
+    "tier": "Startup",
+    "primary_contact": "admin@wayne.com"
+  },
+  {
+    "crm_id": "sf_1014",
+    "company_name": "Globex Inc.",
+    "website": "https://www.globex.com",
+    "tier": "Mid-Market",
+    "primary_contact": "admin@globex.com"
+  },
+  {
+    "crm_id": "sf_1015",
+    "company_name": "Dunder Mifflin LLC",
+    "website": "https://www.dundermifflin.com",
+    "tier": "Enterprise",
+    "primary_contact": "admin@dundermifflin.com"
+  },
+  {
+    "crm_id": "sf_1016",
+    "company_name": "Pied Piper Inc.",
+    "website": "www.piedpiper.com",
+    "tier": "Enterprise",
+    "primary_contact": "admin@piedpiper.com"
+  },
+  {
+    "crm_id": "sf_1017",
+    "company_name": "Oscorp UK Ltd",
+    "website": "https://www.oscorp.co.uk",
+    "tier": "Startup",
+    "primary_contact": "admin@oscorp.co.uk"
+  },
+  {
+    "crm_id": "sf_1018",
+    "company_name": "Stark Logistics Corporation",
+    "website": "www.starklogistics.com",
+    "tier": "Enterprise",
+    "primary_contact": "admin@starklogistics.com"
+  },
+  {
+    "crm_id": "sf_1019",
+    "company_name": "Aperture Inc.",
+    "website": "www.aperture.com",
+    "tier": "Enterprise",
+    "primary_contact": "admin@aperture.com"
+  },
+  {
+    "crm_id": "sf_1020",
+    "company_name": "Acme LLC",
+    "website": "acme.com",
+    "tier": "Startup",
+    "primary_contact": "admin@acme.com"
+  },
+  {
+    "crm_id": "sf_1021",
+    "company_name": "Wayne UK Ltd",
+    "website": "https://www.wayne.co.uk",
+    "tier": "Enterprise",
+    "primary_contact": "admin@wayne.co.uk"
+  },
+  {
+    "crm_id": "sf_1022",
+    "company_name": "Aperture Energy LLC",
+    "website": "apertureenergy.io",
+    "tier": "Startup",
+    "primary_contact": "admin@apertureenergy.io"
+  },
+  {
+    "crm_id": "sf_1023",
+    "company_name": "Hooli Inc.",
+    "website": "hooli.com",
+    "tier": "Startup",
+    "primary_contact": "admin@hooli.com"
+  },
+  {
+    "crm_id": "sf_1024",
+    "company_name": "Wonka LLC",
+    "website": "wonka.io",
+    "tier": "Enterprise",
+    "primary_contact": "admin@wonka.io"
+  },
+  {
+    "crm_id": "sf_1025",
+    "company_name": "Initech Capital Corporation",
+    "website": "initechcapital.io",
+    "tier": "Mid-Market",
+    "primary_contact": "admin@initechcapital.io"
+  }
+]

@@ -1,0 +1,470 @@
+{
+  "seed": 42,
+  "entities": [
+    {
+      "entity_id": "ent_001",
+      "family": "acme",
+      "name": "Acme",
+      "region": "US",
+      "domain": "acme.com",
+      "crm_ids": [
+        "sf_1020"
+      ],
+      "stripe_ids": [
+        "cus_1021"
+      ],
+      "user_ids": [
+        "usr_1023"
+      ],
+      "injected_discrepancies": [
+        "legal_suffix_conflict"
+      ]
+    },
+    {
+      "entity_id": "ent_002",
+      "family": "acme",
+      "name": "Acme UK",
+      "region": "UK",
+      "domain": "acme.co.uk",
+      "crm_ids": [
+        "sf_1011"
+      ],
+      "stripe_ids": [],
+      "user_ids": [
+        "usr_1026",
+        "usr_1038"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_003",
+      "family": "globex",
+      "name": "Globex",
+      "region": "US",
+      "domain": "globex.com",
+      "crm_ids": [
+        "sf_1014"
+      ],
+      "stripe_ids": [
+        "cus_1004"
+      ],
+      "user_ids": [
+        "usr_1006"
+      ],
+      "injected_discrepancies": [
+        "legal_suffix_conflict"
+      ]
+    },
+    {
+      "entity_id": "ent_004",
+      "family": "initech",
+      "name": "Initech",
+      "region": "US",
+      "domain": "initech.io",
+      "crm_ids": [
+        "sf_1005"
+      ],
+      "stripe_ids": [
+        "cus_1016"
+      ],
+      "user_ids": [
+        "usr_1011"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_005",
+      "family": "initech",
+      "name": "Initech Capital",
+      "region": "US",
+      "domain": "initechcapital.io",
+      "crm_ids": [
+        "sf_1025"
+      ],
+      "stripe_ids": [],
+      "user_ids": [
+        "usr_1014"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_006",
+      "family": "hooli",
+      "name": "Hooli",
+      "region": "US",
+      "domain": "hooli.com",
+      "crm_ids": [
+        "sf_1023"
+      ],
+      "stripe_ids": [
+        "cus_1002"
+      ],
+      "user_ids": [
+        "usr_1027",
+        "usr_1032",
+        "usr_1037"
+      ],
+      "injected_discrepancies": [
+        "legal_suffix_conflict"
+      ]
+    },
+    {
+      "entity_id": "ent_007",
+      "family": "vandelay",
+      "name": "Vandelay",
+      "region": "US",
+      "domain": "vandelay.io",
+      "crm_ids": [
+        "sf_1010"
+      ],
+      "stripe_ids": [
+        "cus_1014"
+      ],
+      "user_ids": [
+        "usr_1015",
+        "usr_1016"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_008",
+      "family": "wonka",
+      "name": "Wonka",
+      "region": "US",
+      "domain": "wonka.io",
+      "crm_ids": [
+        "sf_1024"
+      ],
+      "stripe_ids": [
+        "cus_1013"
+      ],
+      "user_ids": [
+        "usr_1019"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_009",
+      "family": "wonka",
+      "name": "Wonka Systems",
+      "region": "US",
+      "domain": "wonkasystems.io",
+      "crm_ids": [
+        "sf_1002"
+      ],
+      "stripe_ids": [
+        "cus_1020"
+      ],
+      "user_ids": [
+        "usr_1031"
+      ],
+      "injected_discrepancies": [
+        "legal_suffix_conflict"
+      ]
+    },
+    {
+      "entity_id": "ent_010",
+      "family": "stark",
+      "name": "Stark",
+      "region": "US",
+      "domain": "stark.io",
+      "crm_ids": [
+        "sf_1006"
+      ],
+      "stripe_ids": [
+        "cus_1022"
+      ],
+      "user_ids": [
+        "usr_1024"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_011",
+      "family": "stark",
+      "name": "Stark Logistics",
+      "region": "US",
+      "domain": "starklogistics.com",
+      "crm_ids": [
+        "sf_1018"
+      ],
+      "stripe_ids": [
+        "cus_1017"
+      ],
+      "user_ids": [
+        "usr_1001",
+        "usr_1013",
+        "usr_1022"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_012",
+      "family": "stark",
+      "name": "Stark UK",
+      "region": "UK",
+      "domain": "stark.co.uk",
+      "crm_ids": [
+        "sf_1012"
+      ],
+      "stripe_ids": [],
+      "user_ids": [
+        "usr_1021"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_013",
+      "family": "wayne",
+      "name": "Wayne",
+      "region": "US",
+      "domain": "wayne.com",
+      "crm_ids": [
+        "sf_1013"
+      ],
+      "stripe_ids": [
+        "cus_1006"
+      ],
+      "user_ids": [
+        "usr_1029"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_014",
+      "family": "wayne",
+      "name": "Wayne UK",
+      "region": "UK",
+      "domain": "wayne.co.uk",
+      "crm_ids": [
+        "sf_1021"
+      ],
+      "stripe_ids": [],
+      "user_ids": [
+        "usr_1008"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_015",
+      "family": "cyberdyne",
+      "name": "Cyberdyne",
+      "region": "US",
+      "domain": "cyberdyne.io",
+      "crm_ids": [
+        "sf_1001"
+      ],
+      "stripe_ids": [
+        "cus_1018"
+      ],
+      "user_ids": [
+        "usr_1034"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_016",
+      "family": "cyberdyne",
+      "name": "Cyberdyne UK",
+      "region": "UK",
+      "domain": "cyberdyne.co.uk",
+      "crm_ids": [
+        "sf_1008"
+      ],
+      "stripe_ids": [
+        "cus_1009"
+      ],
+      "user_ids": [
+        "usr_1007",
+        "usr_1035"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_017",
+      "family": "cyberdyne",
+      "name": "Cyberdyne Logistics",
+      "region": "US",
+      "domain": "cyberdynelogistics.com",
+      "crm_ids": [
+        "sf_1004"
+      ],
+      "stripe_ids": [
+        "cus_1019"
+      ],
+      "user_ids": [
+        "usr_1018"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_018",
+      "family": "tyrell",
+      "name": "Tyrell",
+      "region": "US",
+      "domain": "tyrell.com",
+      "crm_ids": [
+        "sf_1007"
+      ],
+      "stripe_ids": [
+        "cus_1003"
+      ],
+      "user_ids": [
+        "usr_1003",
+        "usr_1010",
+        "usr_1012"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_019",
+      "family": "tyrell",
+      "name": "Tyrell UK",
+      "region": "UK",
+      "domain": "tyrell.co.uk",
+      "crm_ids": [
+        "sf_1003"
+      ],
+      "stripe_ids": [
+        "cus_1008"
+      ],
+      "user_ids": [
+        "usr_1030",
+        "usr_1036"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_020",
+      "family": "tyrell",
+      "name": "Tyrell Capital",
+      "region": "US",
+      "domain": "tyrellcapital.com",
+      "crm_ids": [],
+      "stripe_ids": [],
+      "user_ids": [
+        "usr_1004",
+        "usr_1009"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_021",
+      "family": "oscorp",
+      "name": "Oscorp",
+      "region": "US",
+      "domain": "oscorp.io",
+      "crm_ids": [
+        "sf_1009"
+      ],
+      "stripe_ids": [
+        "cus_1005"
+      ],
+      "user_ids": [
+        "usr_1005"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_022",
+      "family": "oscorp",
+      "name": "Oscorp UK",
+      "region": "UK",
+      "domain": "oscorp.co.uk",
+      "crm_ids": [
+        "sf_1017"
+      ],
+      "stripe_ids": [
+        "cus_1011"
+      ],
+      "user_ids": [
+        "usr_1020"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_023",
+      "family": "aperture",
+      "name": "Aperture",
+      "region": "US",
+      "domain": "aperture.com",
+      "crm_ids": [
+        "sf_1019"
+      ],
+      "stripe_ids": [
+        "cus_1012"
+      ],
+      "user_ids": [
+        "usr_1002",
+        "usr_1025"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_024",
+      "family": "aperture",
+      "name": "Aperture UK",
+      "region": "UK",
+      "domain": "aperture.co.uk",
+      "crm_ids": [],
+      "stripe_ids": [
+        "cus_1015"
+      ],
+      "user_ids": [],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_025",
+      "family": "aperture",
+      "name": "Aperture Energy",
+      "region": "US",
+      "domain": "apertureenergy.io",
+      "crm_ids": [
+        "sf_1022"
+      ],
+      "stripe_ids": [
+        "cus_1010"
+      ],
+      "user_ids": [
+        "usr_1033"
+      ],
+      "injected_discrepancies": [
+        "legal_suffix_conflict"
+      ]
+    },
+    {
+      "entity_id": "ent_026",
+      "family": "piedpiper",
+      "name": "Pied Piper",
+      "region": "US",
+      "domain": "piedpiper.com",
+      "crm_ids": [
+        "sf_1016"
+      ],
+      "stripe_ids": [
+        "cus_1007"
+      ],
+      "user_ids": [
+        "usr_1028"
+      ],
+      "injected_discrepancies": []
+    },
+    {
+      "entity_id": "ent_027",
+      "family": "dundermifflin",
+      "name": "Dunder Mifflin",
+      "region": "US",
+      "domain": "dundermifflin.com",
+      "crm_ids": [
+        "sf_1015"
+      ],
+      "stripe_ids": [
+        "cus_1001"
+      ],
+      "user_ids": [
+        "usr_1017"
+      ],
+      "injected_discrepancies": []
+    }
+  ]
+}
